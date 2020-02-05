@@ -6,11 +6,11 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 01:20:00 by iwillens          #+#    #+#             */
-/*   Updated: 2020/01/27 01:20:03 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/04 01:58:02 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 
 void	ft_putendl(char *s)
 {

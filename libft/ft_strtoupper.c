@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isblank_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_strotoupper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 00:44:05 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/04 01:58:14 by iwillens         ###   ########.fr       */
+/*   Created: 2020/02/03 19:19:50 by iwillens          #+#    #+#             */
+/*   Updated: 2020/02/04 02:08:12 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isblank(int c)
+#include "libft.h"
+
+void				ft_strtoupper(char *str)
 {
-	if (c == '\t' || c == ' ')
-		return (1);
-	return (0);
+	while (*str)
+	{
+		*str = ft_toupper((int)*str);
+		str++;
+	}
 }

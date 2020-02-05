@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isblank_bonus.c                                 :+:      :+:    :+:   */
+/*   pf_errorhandling.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/27 00:44:05 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/04 01:58:14 by iwillens         ###   ########.fr       */
+/*   Created: 2020/02/01 11:07:19 by iwillens          #+#    #+#             */
+/*   Updated: 2020/02/02 18:25:18 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isblank(int c)
+#include "ft_printf.h"
+
+void	pf_strerr_unterminated(void)
 {
-	if (c == '\t' || c == ' ')
-		return (1);
-	return (0);
+	ft_putstr_fd("**** UNTERMINATED!!! What now?!?! ***\n", 1);
+}
+
+void	pf_strerr_invalidspecifier(char expected, char found)
+{
+	ft_putstr_fd("ERRO: Identificador não conhecido-->", 1);
+	ft_putchar_fd(expected, 1);
+	ft_putchar_fd(found, 1);
+	ft_putstr_fd("\n", 1);
 }

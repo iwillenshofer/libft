@@ -6,11 +6,11 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 23:44:53 by iwillens          #+#    #+#             */
-/*   Updated: 2020/01/27 00:31:53 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/04 01:58:10 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 
 void	ft_putstr(char *str)
 {

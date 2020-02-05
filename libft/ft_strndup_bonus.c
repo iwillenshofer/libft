@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_strndup_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:02:07 by iwillens          #+#    #+#             */
-/*   Updated: 2020/01/30 16:20:02 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/03 08:34:31 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char    *ft_strndup(const char *s1, size_t n)
 	tot_bytes+=1;
 
 	i = 0;
-	if (!(mem = (char*)malloc(tot_bytes)))
+	if (!(mem = (char*)malloc(tot_bytes + 1)))
 		return (NULL);
 	while (i < tot_bytes)
 	{
