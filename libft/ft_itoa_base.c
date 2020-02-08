@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 17:44:57 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/03 20:23:06 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/06 16:05:11 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t	countdigits(unsigned long long int n, size_t base)
 	size_t count;
 
 	count = 1;
-	while (n > base)
+	while (n >= base)
 	{
 		count++;
 		n = n / base;
@@ -36,12 +36,13 @@ static char		*fillnumber(unsigned int isnegative,
 		return (NULL);
 
 	str[digits] = '\0';
-	while (digits--)
+	while (digits)
 	{
-		str[digits] = (number % base) + '0';
-		if(str[digits] > '9')
-			str[digits] += ('a' - ':');
+		str[digits - 1] = (number % base) + '0';
+		if(str[digits - 1] > '9')
+			str[digits - 1] += ('a' - ':');
 		number = number / base;
+		digits -= 1;
 	}
 	if (isnegative)
 		str[0] = '-';
@@ -50,6 +51,7 @@ static char		*fillnumber(unsigned int isnegative,
 
 char			*ft_itoa_base(long long int n, size_t base, char optsigned)
 {
+	char *tmp;
 
 	unsigned long long int	number;
 	int					isnegative;
@@ -63,5 +65,6 @@ char			*ft_itoa_base(long long int n, size_t base, char optsigned)
 	}
 	else
 		number = (unsigned long long int)n;
-	return (fillnumber(isnegative, number, base));
+	tmp = fillnumber(isnegative, number, base);
+	return (tmp);
 }

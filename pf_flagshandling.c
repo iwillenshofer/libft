@@ -6,13 +6,13 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 11:33:26 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/04 22:04:54 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/06 02:08:22 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	pf_getflags(char *str, short *flags)
+size_t	pf_getflags(char *str, int *flags)
 {
 	size_t pos;
 
@@ -59,7 +59,7 @@ size_t	pf_getwidth(char *str, int *number)
 	return (pos);
 }
 
-size_t	pf_getlength(char *str, short *length)
+size_t	pf_getlength(char *str, int *length)
 {
 	size_t pos;
 

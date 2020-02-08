@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 11:34:49 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/04 22:06:21 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/07 22:44:30 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		pf_fillcontent(char *str, t_content **content)
 {
-	short	flags;
+	int	flags;
 	int		number;
 
 	str += pf_getflags(str, &flags) + 1;
@@ -22,9 +22,12 @@ static void		pf_fillcontent(char *str, t_content **content)
 	str += pf_getwidth(str, &number);
 	(*content)->width.number = number;
 	if (number == 0 && *str == '*')
-		(*content)->width.wildcard = 1;
+	{
+		(*content)->width.wildcard = PF_WILDCARD_AP;
+		str++;
+	}
 	else
-		(*content)->width.wildcard = 0;
+		(*content)->width.wildcard = PF_WILDCARD_SET;
 	if (*str == '.')
 	{
 		str++;
@@ -36,28 +39,11 @@ static void		pf_fillcontent(char *str, t_content **content)
 			str++;
 		}
 		else
-		{
 			(*content)->precision.wildcard = PF_WILDCARD_SET;
-		}
 	}
 	str += pf_getlength(str, &(*content)->length);
 	if (*str != (*content)->type)
 		pf_strerr_invalidspecifier((*content)->type, *str);
-}
-
-/*
-** used to initialize the structs variables
-** if its content is just a string (no specifiers)
-*/
-
-static void		pf_fillblank(t_content **content)
-{
-	(*content)->flags = 0;
-	(*content)->width.number = 0;
-	(*content)->width.wildcard = 0;
-	(*content)->precision.number = 0;
-	(*content)->padding_char = ' ';
-	(*content)->precision.wildcard = PF_WILDCARD_DEFAULT;
 }
 
 /*
@@ -71,15 +57,12 @@ static void		pf_additem(t_list **items, char *str, int type)
 
 	content = (t_content*)malloc(sizeof(t_content));
 	content->orig_content = str;
+	pf_fillblank(&content);
 	if (type == TSTRING)
-	{
 		content->type = '!';
-		pf_fillblank(&content);
-	}
 	else
 	{
 		content->type = str[ft_strlen(str) - 1];
-		pf_fillblank(&content);
 		pf_fillcontent(str, &content);
 	}
 	ft_lstadd_back(items, ft_lstnew(content));
@@ -90,7 +73,7 @@ static size_t	pf_getcontent_string(const char *str,
 {
 	char *string;
 
-	string = ft_strndup(str, pos);
+	string = ft_strndup(str, pos + 1);
 	pf_additem(items, string, type);
 	return (pos);
 }

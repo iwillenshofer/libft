@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 06:31:07 by iwillens          #+#    #+#             */
-/*   Updated: 2020/01/30 07:59:24 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/05 23:07:31 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+typedef struct	s_ldouble
+{
+	short				signal;
+	unsigned long long	mantissa;
+	unsigned long long	exponent;
+}				t_ldouble;
+
 char			*ft_itoa(int n);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
@@ -34,6 +41,7 @@ int				ft_isalnum(int c);
 int				ft_isascii(int c);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
+void			ft_strtoupper(char *str);
 int				ft_isprint(int c);
 int				ft_lstsize(t_list *lst);
 int				ft_atoi(const char *str);
@@ -74,4 +82,23 @@ char			*ft_strnstr(const char *haystack,
 										const char *needle, size_t len);
 size_t			ft_strfind_start(const char *str, const char *set);
 size_t			ft_strfind_end(const char *str, const char *set);
+char			*ft_itoa_base(long long int n, size_t base, char optsigned);
+char			*ft_ftoa_base(long double n, size_t precision);
+int				ft_islower(int c);
+int				ft_isspace(int c);
+int				ft_isupper(int c);
+void			ft_putchar(char c);
+void			ft_putnbr(int nb);
+void			ft_putstr(char *str);
+int				ft_isblank(int c);
+void			ft_putendl(char *s);
+char			*ft_strndup(const char *s1, size_t n);
+size_t			ft_strfind_first(const char *str, const char *set);
+char			*ft_insertchr_end(char *str, char c);
+char			*ft_fillnchr_end(char *str, char c, size_t n);
+char			*ft_insertchr_start(char *str, char c);
+char			*ft_fillnchr_start(char *str, char c, size_t n);
+int				ft_isnumeric(char *str);
+int				ft_negative_tozero (int n);
+int				ft_negative_topositive (int n);
 #endif

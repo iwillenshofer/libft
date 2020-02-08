@@ -6,14 +6,14 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/04 18:43:03 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/07 22:53:26 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
+# include "./libft/libft.h"
 # include <stdarg.h>
 
 # ifndef T_UNSIGNED
@@ -28,14 +28,18 @@
 # endif
 
 # ifndef PF_SPEC_LLONG
-#  define PF_SPEC_LLONG "diuoxX"
+#  define PF_SPEC_INT "di"
+#  define PF_SPEC_UINT "upoxX"
+#  define PF_SPEC_LLONG "p"
 #  define PF_SPEC_DOUBLE "fFeEgGaA"
 # endif
+
 # ifndef PF_WILDCARD_SET
 #  define PF_WILDCARD_SET 0
 #  define PF_WILDCARD_AP 1
-#  define PF_WILDCARD_DEFAULT 3
+#  define PF_WILDCARD_DEFAULT 2
 # endif
+
 # ifndef PF_FLAGS
 #  define PF_FLAGS "-+ #0"
 #  define PF_FLAG_MINUS 1 // 00000001
@@ -79,6 +83,8 @@
 #  define TPLACEHOLDER 2
 # endif
 
+typedef long long int ptrdiff_t;
+
 /*
 ** the following struct, which is a LINKED LIST  is the heart of the function. 
 ** It stores all strings, types, flags, converted values, making it ready
@@ -100,8 +106,8 @@
 
 typedef struct	s_contwidth
 {
-	size_t	number;
-	short	wildcard;
+	int			number;
+	short		wildcard;
 }				t_contwidth;
 
 typedef struct	s_content
@@ -109,8 +115,8 @@ typedef struct	s_content
 	char				*orig_content;
 	void				*value;
 	char				type;
-	short				flags;
-	short				length;
+	int					flags;
+	int					length;
 	t_contwidth			width;
 	t_contwidth			precision;
 	char				*printable_value;
@@ -139,9 +145,9 @@ int pf_getcontent(const char *str, t_list **items);
 ** with the right flags, width, height, specifiers
 */
 
-size_t pf_getflags(char *str, short *flags);
+size_t pf_getflags(char *str, int *flags);
 size_t pf_getwidth(char *str, int *number);
-size_t pf_getlength(char*str, short *length);
+size_t pf_getlength(char*str, int *length);
 
 /*
 ** content conversion
@@ -152,5 +158,12 @@ void pf_convert_integer(t_content *content, short type, size_t base);
 void pf_convert_content(t_content *content);
 void pf_convertlist(t_list **lst);
 
+void pf_flags_add(t_content *cnt);
 
+char *ft_chr_unicode(wchar_t c, int limit_1);
+void pf_writecharstr(char *s);
+char *pf_strchecknull(char *str);
+
+void		pf_fillblank(t_content **content);
+void pf_freelist(t_list **lst);
 #endif

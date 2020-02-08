@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   pf_stringhandling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 07:03:56 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/05 12:44:56 by iwillens         ###   ########.fr       */
+/*   Created: 2020/02/06 04:39:03 by iwillens          #+#    #+#             */
+/*   Updated: 2020/02/07 20:20:12 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isdigit(int c)
+void pf_writecharstr(char *s)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-int ft_isnumeric(char *str)
-{
-	size_t	i;
-
-	int		is_numeric;
-	if (!str)
-		return (0);
+	int i;
+	char c;
 	i = 0;
-	is_numeric = 1;
-	if (str[i] == '+' || str[i] == '-')
-		i++;
-	if (!str)
-		return (0);
-	while (str[i])
+
+	while (s && s[i] != '\0')
 	{
-		if (!ft_isdigit(str[i]))
-			is_numeric = 0;
+		c = s[i];
+		if (c == '*')
+			c = 0;
+		ft_putchar_fd(c, 1);
 		i++;
 	}
-	return(is_numeric);
+}
+
+char *pf_strchecknull(char *str)
+{
+	if (!str)
+		return ("(null)");
+	else
+		return (str);
 }

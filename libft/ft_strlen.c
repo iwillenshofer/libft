@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 11:15:18 by iwillens          #+#    #+#             */
-/*   Updated: 2020/01/20 13:55:00 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/05 08:13:30 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 size_t	ft_strlen(const char *s)
 {
 	size_t	size;
-
 	size = 0;
 	while (s[size] != '\0')
 		size++;
