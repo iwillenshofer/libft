@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 17:44:57 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/06 16:05:11 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 20:34:41 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ static char		*fillnumber(unsigned int isnegative,
 {
 	char	*str;
 	size_t	digits;
+
 	digits = isnegative + countdigits(number, base);
 	if (!(str = (char*)malloc(digits + 1)))
 		return (NULL);
-
 	str[digits] = '\0';
 	while (digits)
 	{
 		str[digits - 1] = (number % base) + '0';
-		if(str[digits - 1] > '9')
+		if (str[digits - 1] > '9')
 			str[digits - 1] += ('a' - ':');
 		number = number / base;
 		digits -= 1;
@@ -51,16 +51,15 @@ static char		*fillnumber(unsigned int isnegative,
 
 char			*ft_itoa_base(long long int n, size_t base, char optsigned)
 {
-	char *tmp;
-
+	char					*tmp;
 	unsigned long long int	number;
-	int					isnegative;
+	int						isnegative;
 
 	(void)base;
 	isnegative = 0;
 	if (optsigned == 1 && n < 0)
 	{
-		number = (unsigned long long int)(-n);
+		number = (unsigned long long int)(n * -1);
 		isnegative = 1;
 	}
 	else

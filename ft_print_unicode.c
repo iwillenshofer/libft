@@ -6,32 +6,12 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 08:34:23 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/07 22:47:59 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 20:46:01 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_printf.h"
-/*
-** checks how many bits the integer is using
-** so that we know how many characters (bytes) we'll need to
-** print our unicode
-*/
-
-static size_t	bit_counter(int c)
-{
-	size_t counter;
-
-	counter = 0;
-	if (c < 0)
-		c = ~c;
-	while (c)
-	{
-		c = c >> 1;
-		counter++;
-	}
-	return (counter);
-}
 
 /*
 ** return the ammount of bytes needs to represent an
@@ -129,16 +109,16 @@ int				ft_print_unicode(int c, int fd)
 }
 
 /*
-** if limit_1 is enable, 
+** if limit_1 is enable,
 ** it uses one single byte;
 */
 
-char *ft_chr_unicode(wchar_t c, int limit_1)
+char			*ft_chr_unicode(wchar_t c, int limit_1)
 {
 	size_t	i;
 	char	chr;
 	size_t	bytes;
-	char 	*str;
+	char	*str;
 
 	if (c == 0)
 		c = '*';

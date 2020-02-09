@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 07:03:56 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/05 12:44:56 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 20:21:21 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int ft_isnumeric(char *str)
+int	ft_isnumeric(char *str)
 {
 	size_t	i;
-
 	int		is_numeric;
+
 	if (!str)
 		return (0);
 	i = 0;
@@ -38,5 +38,5 @@ int ft_isnumeric(char *str)
 			is_numeric = 0;
 		i++;
 	}
-	return(is_numeric);
+	return (is_numeric);
 }

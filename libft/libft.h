@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 06:31:07 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/05 23:07:31 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 20:44:57 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,6 @@ char			*ft_fillnchr_start(char *str, char c, size_t n);
 int				ft_isnumeric(char *str);
 int				ft_negative_tozero (int n);
 int				ft_negative_topositive (int n);
+size_t			bit_counter(int c);
+
 #endif

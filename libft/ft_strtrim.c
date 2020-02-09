@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:49:52 by iwillens          #+#    #+#             */
-/*   Updated: 2020/01/30 22:32:38 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 20:29:28 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	ft_strfind_first(const char *str, const char *set)
 			if (set[j] == str[i])
 			{
 				found = 1;
-				return (i + 1);	
+				return (i + 1);
 			}
 			j++;
 		}
@@ -38,7 +38,6 @@ size_t	ft_strfind_first(const char *str, const char *set)
 	}
 	return (0);
 }
-
 
 size_t	ft_strfind_start(const char *str, const char *set)
 {
@@ -89,7 +88,7 @@ size_t	ft_strfind_end(const char *str, const char *set)
 	return (i + 1);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;
 	size_t	end;

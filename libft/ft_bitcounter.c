@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_bitcounter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 16:02:07 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/08 20:32:03 by iwillens         ###   ########.fr       */
+/*   Created: 2020/02/08 20:43:14 by iwillens          #+#    #+#             */
+/*   Updated: 2020/02/08 20:43:25 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strndup(const char *s1, size_t n)
-{
-	size_t	i;
-	size_t	tot_bytes;
-	char	*mem;
+/*
+** checks how many bits the integer is using
+** so that we know how many characters (bytes) we'll need to
+** print our unicode
+*/
 
-	tot_bytes = ft_strlen(s1) + 1;
-	if (n < tot_bytes)
-		tot_bytes = n;
-	i = 0;
-	if (!(mem = (char*)malloc(tot_bytes + 1)))
-		return (NULL);
-	while (i < tot_bytes)
+size_t	bit_counter(int c)
+{
+	size_t counter;
+
+	counter = 0;
+	if (c < 0)
+		c = ~c;
+	while (c)
 	{
-		mem[i] = s1[i];
-		i++;
+		c = c >> 1;
+		counter++;
 	}
-	mem[tot_bytes] = '\0';
-	return (mem);
+	return (counter);
 }

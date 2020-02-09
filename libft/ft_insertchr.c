@@ -6,32 +6,30 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 17:21:56 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/06 16:12:26 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 22:42:41 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_insertchr_end(char *str, char c)
+char	*ft_insertchr_end(char *str, char c)
 {
-	char *tmp;
-	size_t str_len;
+	char	*tmp;
+	size_t	str_len;
 
 	str_len = ft_strlen(str) + 1;
 	tmp = (char*)malloc(sizeof(char) * (str_len + 1));
 	ft_memcpy(tmp, str, str_len);
-//	ft_strlcpy(tmp, str, str_len);
 	tmp[str_len - 1] = c;
 	tmp[str_len] = '\0';
 	free(str);
 	return (tmp);
 }
 
-char			*ft_insertchr_start(char *str, char c)
+char	*ft_insertchr_start(char *str, char c)
 {
-	char *tmp;
-
-	size_t str_len;
+	char	*tmp;
+	size_t	str_len;
 
 	str_len = ft_strlen(str) + 1;
 	tmp = (char*)malloc(sizeof(char) * (str_len + 1));
@@ -42,7 +40,7 @@ char			*ft_insertchr_start(char *str, char c)
 	return (tmp);
 }
 
-char			*ft_fillnchr_end(char *str, char c, size_t n)
+char	*ft_fillnchr_end(char *str, char c, size_t n)
 {
 	size_t str_len;
 
@@ -55,16 +53,15 @@ char			*ft_fillnchr_end(char *str, char c, size_t n)
 	return (str);
 }
 
-char			*ft_fillnchr_start(char *str, char c, size_t n)
+char	*ft_fillnchr_start(char *str, char c, size_t n)
 {
 	size_t	str_len;
 	char	signal;
 
 	signal = 0;
-	str_len = ft_strlen(str);
-	if (n > str_len)
+	if (n >= (str_len = ft_strlen(str)))
 	{
-	if (ft_isnumeric(str) && (str[0] == '-' || str[0] == '+'))
+		if (ft_isnumeric(str) && (str[0] == '-' || str[0] == '+'))
 		{
 			if (str[0] == '-')
 				signal = 1;

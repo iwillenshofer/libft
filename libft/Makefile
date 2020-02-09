@@ -6,7 +6,7 @@
 #    By: iwillens <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/21 18:49:08 by iwillens          #+#    #+#              #
-#    Updated: 2020/02/05 13:29:38 by iwillens         ###   ########.fr        #
+#    Updated: 2020/02/08 22:50:16 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ SRCS = 	ft_atoi.c \
 		   ft_insertchr.c \
 		   ft_atoi.c \
 		   ft_ftoa_base.c \
-		   ft_negative_tozero.c
+		   ft_negative_tozero.c \
+		   ft_bitcounter.c
 		   
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 

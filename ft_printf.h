@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/07 22:53:26 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 19:56:59 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # ifndef PF_SPECIFIERS 
 #  define PF_SPECIFIERS_P "cspdiuxX%" //PADRAO
 #  define PF_SPECIFIERS_B "cspdiuxX%nfge" //BONUS
-#  define PF_SPECIFIERS "%npscAaGgEeFfXxoudi" //BONUS_EXTENDED
+#  define PF_SPECIFIERS "%npscGgEeFfXxoudi" //BONUS_EXTENDED
 # endif
 
 # ifndef PF_SPEC_LLONG
@@ -32,6 +32,7 @@
 #  define PF_SPEC_UINT "upoxX"
 #  define PF_SPEC_LLONG "p"
 #  define PF_SPEC_DOUBLE "fFeEgGaA"
+#  define PF_SPEC_NPOINTER "n"
 # endif
 
 # ifndef PF_WILDCARD_SET
@@ -164,6 +165,8 @@ char *ft_chr_unicode(wchar_t c, int limit_1);
 void pf_writecharstr(char *s);
 char *pf_strchecknull(char *str);
 
-void		pf_fillblank(t_content **content);
+void pf_fillblank(t_content **content);
 void pf_freelist(t_list **lst);
+size_t pf_countliststr(t_list **lst);
+
 #endif

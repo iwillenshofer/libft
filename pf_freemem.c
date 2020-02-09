@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:42:21 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/07 22:52:59 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 22:01:26 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** used to initialize the structs variables
-** if its content is just a string (no specifiers)
+** to allow null test before freeing it at the end
 */
 
 void		pf_fillblank(t_content **content)
@@ -31,11 +31,11 @@ void		pf_fillblank(t_content **content)
 }
 void	pf_freecontent(t_content **cnt)
 {
-	if ((*cnt)->printable_value == 0)
+	if ((*cnt)->printable_value)
 		free((*cnt)->printable_value);
-	if ((*cnt)->value == 0)
+	if ((*cnt)->value && (*cnt)->type != 's')
 		free((*cnt)->value);
-	if ((*cnt)->orig_content == 0)
+	if ((*cnt)->orig_content)
 		free((*cnt)->orig_content);
 	free(*cnt);
 }
@@ -44,11 +44,14 @@ void pf_freelist(t_list **lst)
 	t_content *cnt;
 	t_list *tmp;
 
-	tmp = *lst;
-	while (tmp)
+	while (*lst)
 	{
-		cnt = (tmp)->content;
-		(tmp) = (tmp)->next;
+		cnt = (*lst)->content;
+		pf_freecontent(&cnt);
+		tmp = *lst;
+		*lst = (*lst)->next;
+		free(tmp);
 	}
-	free(*lst);
+	if(*lst)
+		free(*lst);
 }

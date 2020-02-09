@@ -6,7 +6,7 @@
 /*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:19:30 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/05 23:04:55 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/08 20:35:28 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 **	or the original number it received if it is positive or 0;
 */
 
-int	ft_negative_tozero (int n)
+int	ft_negative_tozero(int n)
 {
 	if (n < 0)
 		return (0);
@@ -23,7 +23,7 @@ int	ft_negative_tozero (int n)
 		return (n);
 }
 
-int	ft_negative_topositive (int n)
+int	ft_negative_topositive(int n)
 {
 	if (n < 0)
 		return (n * -1);
