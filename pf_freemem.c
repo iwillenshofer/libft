@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_freemem.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 22:42:21 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/10 11:36:27 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:17:53 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** to allow null test before freeing it at the end
 */
 
-void		pf_fillblank(t_content **content)
+void	pf_fillblank(t_content **content)
 {
 	(*content)->flags = 0;
 	(*content)->width.nb = 0;
@@ -43,10 +43,10 @@ void	pf_freecontent(t_content **cnt)
 	free(*cnt);
 }
 
-void pf_freelist(t_list **lst)
+void	pf_freelist(t_list **lst)
 {
-	t_content *cnt;
-	t_list *tmp;
+	t_content	*cnt;
+	t_list		*tmp;
 
 	while (*lst)
 	{
@@ -56,6 +56,6 @@ void pf_freelist(t_list **lst)
 		*lst = (*lst)->next;
 		free(tmp);
 	}
-	if(*lst)
+	if (*lst)
 		free(*lst);
 }

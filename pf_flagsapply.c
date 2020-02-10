@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pf_flagsapply.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 21:43:22 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/10 10:42:10 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:20:18 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	pf_flags_add_space(t_content *cnt)
 		cnt->prt_v = ft_insertchr_start(cnt->prt_v, ' ');
 }
 
-void pf_flags_add(t_content *cnt)
+void	pf_flags_add(t_content *cnt)
 {
 	if (cnt->width.nb < 0)
 	{

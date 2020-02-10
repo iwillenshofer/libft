@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   pf_conversionsfloat.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 10:15:37 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/10 10:39:27 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:23:09 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void pf_convert_float(t_content *cnt)
+void		pf_convert_float(t_content *cnt)
 {
 	if (cnt->prec.nb > 0)
-		cnt->prt_v = 
+		cnt->prt_v =
 			ft_ftoa_base(*(double*)(cnt->value), cnt->prec.nb);
-	else if (cnt->prec.wc == PF_WC_SET )
-		cnt->prt_v = 
+	else if (cnt->prec.wc == PF_WC_SET)
+		cnt->prt_v =
 			ft_ftoa_base(*(double*)(cnt->value), 0);
 	else
-		cnt->prt_v = 
+		cnt->prt_v =
 			ft_ftoa_base(*(double*)(cnt->value), 6);
 }
 
@@ -30,27 +30,27 @@ void pf_convert_float(t_content *cnt)
 ** the result of ftoa_base.
 */
 
-static void pf_convert_mantissa_itoa(t_content *cnt, long double n_dbl)
+static void	pf_convert_mantissa_itoa(t_content *cnt, long double n_dbl)
 {
-if (cnt->prec.nb > 0)
-		cnt->prt_v = 
+	if (cnt->prec.nb > 0)
+		cnt->prt_v =
 			ft_ftoa_base(n_dbl, cnt->prec.nb);
-	else if (cnt->prec.wc == PF_WC_SET )
-		cnt->prt_v = 
+	else if (cnt->prec.wc == PF_WC_SET)
+		cnt->prt_v =
 			ft_ftoa_base(n_dbl, 0);
 	else
-		cnt->prt_v = 
+		cnt->prt_v =
 			ft_ftoa_base(n_dbl, 6);
 	cnt->prt_v = ft_insertchr_end(cnt->prt_v, 'e');
 	cnt->prt_v = ft_insertchr_end(cnt->prt_v, '+');
 }
 
-void pf_convert_mantissa(t_content *cnt)
+void		pf_convert_mantissa(t_content *cnt)
 {
-	long double n_dbl;
-	size_t counter;
-	char *str1;
-	char *str2;
+	long double	n_dbl;
+	size_t		counter;
+	char		*str1;
+	char		*str2;
 
 	counter = 0;
 	n_dbl = *(double*)(cnt->value);
@@ -76,10 +76,10 @@ void pf_convert_mantissa(t_content *cnt)
 ** float or mantissa, whichever is the shortest.
 */
 
-void pf_convert_shortest_floatmant(t_content *cnt)
+void		pf_convert_shortest_floatmant(t_content *cnt)
 {
 	t_content *tmpcont;
-	
+
 	tmpcont = (t_content*)malloc(sizeof(t_content));
 	pf_fillblank(&tmpcont);
 	tmpcont->prec.nb = cnt->prec.nb;

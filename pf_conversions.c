@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   pf_conversions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:40:23 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/10 10:47:55 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:24:29 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-
 
 static void	pf_convert_string(t_content *cnt)
 {
 	size_t strlen;
 
 	strlen = ft_strlen(cnt->value);
-	if ((cnt->prec.wc == (PF_WC_SET) || cnt->prec.wc == (PF_WC_AP)) && 
+	if ((cnt->prec.wc == (PF_WC_SET) || cnt->prec.wc == (PF_WC_AP)) &&
 		cnt->prec.nb < (int)strlen && cnt->prec.nb >= 0)
-		{
-			cnt->prt_v = ft_strndup((char*)(cnt->value), cnt->prec.nb);
-		}	
-		else
-			cnt->prt_v = ft_strndup((char*)(cnt->value), strlen);
+	{
+		cnt->prt_v = ft_strndup((char*)(cnt->value), cnt->prec.nb);
+	}
+	else
+		cnt->prt_v = ft_strndup((char*)(cnt->value), strlen);
 }
 
 static void	pf_convert_content_number(t_content *cnt)
@@ -45,7 +43,7 @@ static void	pf_convert_content_number(t_content *cnt)
 	if (cnt->type == 'e' || cnt->type == 'E' || cnt->type == 'g' ||
 	cnt->type == 'G')
 		pf_convert_mantissa(cnt);
-	if  (cnt->type == 'g' || cnt->type == 'G')
+	if (cnt->type == 'g' || cnt->type == 'G')
 		pf_convert_shortest_floatmant(cnt);
 }
 
@@ -55,7 +53,7 @@ void		pf_convert_content(t_content *cnt)
 	if (cnt->type == 's')
 		pf_convert_string(cnt);
 	if (cnt->type == 'c')
-			cnt->prt_v = ft_chr_unicode(*(wchar_t*)(cnt->value), 1);
+		cnt->prt_v = ft_chr_unicode(*(wchar_t*)(cnt->value), 1);
 	if (cnt->type == '%')
 		cnt->prt_v = strdup("%");
 	if (cnt->type == 'n')

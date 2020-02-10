@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:06:07 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/10 11:28:38 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:34:20 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** in first arg, it prints the orig_content instead of printable_value (prt_v)
 ** as it wasn't supposed to be changed.
 ** 2. if it is a char, it is treated as a special case, since it can be passed
-** as null (and a null char should be printed). If it was printed normally, 
+** as null (and a null char should be printed). If it was printed normally,
 ** ft_putstr would have stopped at \0 and not printed anything
 */
 
@@ -34,14 +34,12 @@ void	pf_printlist(t_list **lst)
 	while (tmp)
 	{
 		cnt = (tmp)->content;
-			if (cnt->type == '!')
-				ft_putstr_fd(cnt->orig_content, 1);	
-			else if (cnt->type == 'c' && *(wchar_t*)cnt->value == 0)
-				pf_writecharstr(cnt->prt_v);
-			else
-				ft_putstr_fd(cnt->prt_v, 1);
-					
-
+		if (cnt->type == '!')
+			ft_putstr_fd(cnt->orig_content, 1);
+		else if (cnt->type == 'c' && *(wchar_t*)cnt->value == 0)
+			pf_writecharstr(cnt->prt_v);
+		else
+			ft_putstr_fd(cnt->prt_v, 1);
 		(tmp) = (tmp)->next;
 	}
 }

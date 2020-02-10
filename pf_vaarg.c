@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pf_vaarg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:15:49 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/10 11:18:39 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:29:49 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void pfgetvaarg_nptr(va_list ap, t_content *cnt)
+static void	pfgetvaarg_nptr(va_list ap, t_content *cnt)
 {
 	if (cnt->length == 0)
 		(cnt->value) = (va_arg(ap, int*));
@@ -25,14 +25,14 @@ static void pfgetvaarg_nptr(va_list ap, t_content *cnt)
 	else if (cnt->length == LM_SIZE_T)
 		(cnt->value) = (va_arg(ap, size_t*));
 	else if (cnt->length == LM_PTRDIFF)
-		(cnt->value) = (va_arg(ap, ptrdiff_t*));
+		(cnt->value) = (va_arg(ap, t_ptrdiff*));
 	else if (cnt->length == LM_SHORT)
 		(cnt->value) = (va_arg(ap, short*));
 	else if (cnt->length == LM_CHAR)
 		(cnt->value) = (va_arg(ap, char*));
 }
 
-static void pfgetvaarg_int(va_list ap, t_content *cnt)
+static void	pfgetvaarg_int(va_list ap, t_content *cnt)
 {
 	cnt->value = (void*)malloc(sizeof(long long int));
 	if (cnt->length == 0)
@@ -50,15 +50,15 @@ static void pfgetvaarg_int(va_list ap, t_content *cnt)
 	else if (cnt->length == LM_SIZE_T)
 		*(size_t*)(cnt->value) = va_arg(ap, size_t);
 	else if (cnt->length == LM_PTRDIFF)
-		*(ptrdiff_t*)(cnt->value) = va_arg(ap, ptrdiff_t);
+		*(t_ptrdiff*)(cnt->value) = va_arg(ap, t_ptrdiff);
 }
 
-static void pfgetvaarg_uint(va_list ap, t_content *cnt)
+static void	pfgetvaarg_uint(va_list ap, t_content *cnt)
 {
 	if (ft_strchr(PF_SPEC_LLONG, cnt->type))
-			(cnt->length = LM_LONGLONG);
+		(cnt->length = LM_LONGLONG);
 	cnt->value = (void*)malloc(sizeof(t_ulli));
-	if (cnt->length == 0 )
+	if (cnt->length == 0)
 		*(int*)(cnt->value) = va_arg(ap, unsigned int);
 	else if (cnt->length == LM_SHORT)
 		*(unsigned short*)(cnt->value) =
@@ -75,10 +75,10 @@ static void pfgetvaarg_uint(va_list ap, t_content *cnt)
 	else if (cnt->length == LM_SIZE_T)
 		*(size_t*)(cnt->value) = va_arg(ap, size_t);
 	else if (cnt->length == LM_PTRDIFF)
-		*(ptrdiff_t*)(cnt->value) = va_arg(ap, ptrdiff_t);
+		*(t_ptrdiff*)(cnt->value) = va_arg(ap, t_ptrdiff);
 }
 
-static void pf_getvaarg_specialcases(va_list ap, t_content *cnt)
+static void	pf_getvaarg_specialcases(va_list ap, t_content *cnt)
 {
 	if (ft_strchr(PF_SPEC_DOUBLE, cnt->type) && cnt->length & LM_LONGDBL)
 	{
@@ -99,19 +99,19 @@ static void pf_getvaarg_specialcases(va_list ap, t_content *cnt)
 	}
 }
 
-void pf_getvaarg(va_list ap, t_list **items)
+void		pf_getvaarg(va_list ap, t_list **items)
 {
-	t_content *cnt;
-	t_list *tmp;
+	t_content	*cnt;
+	t_list		*tmp;
 
 	tmp = *items;
-		while(tmp)
+	while (tmp)
 	{
 		cnt = (t_content*)(tmp)->content;
 		if (cnt->width.wc == PF_WC_AP)
 			cnt->width.nb = va_arg(ap, int);
 		if (cnt->prec.wc == PF_WC_AP)
-			cnt->prec.nb =va_arg(ap, int);
+			cnt->prec.nb = va_arg(ap, int);
 		if (ft_strchr(PF_SPEC_INT, cnt->type))
 			pfgetvaarg_int(ap, cnt);
 		else if (ft_strchr(PF_SPEC_UINT, cnt->type))

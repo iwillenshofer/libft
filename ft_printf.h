@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iwillens <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/10 11:39:48 by iwillens         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:33:28 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #  define T_SIGNED 1
 # endif
 
-# ifndef PF_SPECIFIERS 
+# ifndef PF_SPECIFIERS
 #  define PF_SPECIFIERS_P "cspdiuxX%"
 #  define PF_SPECIFIERS_B "cspdiuxX%nfge"
 #  define PF_SPECIFIERS "%npscGgEeFfXxoudi"
@@ -43,11 +43,11 @@
 
 # ifndef PF_FLAGS
 #  define PF_FLAGS "-+ #0"
-#  define PF_FLAG_MINUS 1 // 00000001
-#  define PF_FLAG_PLUS  2 // 00000010
-#  define PF_FLAG_SPACE 4 // 00000100
-#  define PF_FLAG_SHARP 8 // 00001000
-#  define PF_FLAG_ZERO 16 // 00010000
+#  define PF_FLAG_MINUS 1
+#  define PF_FLAG_PLUS  2
+#  define PF_FLAG_SPACE 4
+#  define PF_FLAG_SHARP 8
+#  define PF_FLAG_ZERO 16
 # endif
 
 # ifndef M_I
@@ -86,25 +86,24 @@
 #  define TPLACEHOLDER 2
 # endif
 
-typedef long long int			ptrdiff_t;
+typedef long long int			t_ptrdiff;
 typedef unsigned long long int	t_ulli;
 typedef long long int			t_lli;
-
 
 /*
 ** precision number, wildcard and if it was originally negative,
 ** as it is turned into positive on runtime
 */
 
-typedef struct					s_contwidth
+typedef struct	s_contwidth
 {
 	int			nb;
 	short		wc;
 	int			was_negative;
-}								t_contwidth;
+}				t_contwidth;
 
 /*
-** the following struct, which is a LINKED LIST  is the heart of the function. 
+** the following struct, which is a LINKED LIST  is the heart of the function.
 ** It stores all strings, types, flags, converted values, making it ready
 ** to be printed.
 ** --> [type] can be cspdiuxX% (and bonus: nfge)
@@ -114,15 +113,15 @@ typedef struct					s_contwidth
 **		prt_v is filled, indicating that this field is ready to be
 **		printed.
 ** --> [flags] can be - 0 . * (and minimum field width)
-** 		(l ll h hh for bonus, as well as # and +) 
-** --> [width], in case it is specified 
+** 		(l ll h hh for bonus, as well as # and +)
+** --> [width], in case it is specified
 ** --> [value], the original value of the identifier
 ** --> [prt_v], the original value already treated using flags and
 **		types and any conversion required.
 ** --> [orig_content] the full string of the identifier (or pure string);
 */
 
-typedef struct					s_content
+typedef struct	s_content
 {
 	char				*orig_content;
 	void				*value;
@@ -134,13 +133,13 @@ typedef struct					s_content
 	char				*prt_v;
 	char				pad_chr;
 	struct s_content	*next;
-}								t_content;
+}				t_content;
 
 /*
 ** main function
 */
 
-int		ft_printf(const char *, ...);
+int				ft_printf(const char *str, ...);
 
 /*
 ** error handling
@@ -148,16 +147,16 @@ int		ft_printf(const char *, ...);
 ** as warnings to the compiler.
 */
 
-void	pf_strerr_unterminated();
-void	pf_strerr_invalidspecifier(char expected, char found);
+void			pf_strerr_unterminated();
+void			pf_strerr_invalidspecifier(char expected, char found);
 
 /*
 ** content handling
 */
 
-int		pf_getcontent(const char *str, t_list **items);
-size_t	pf_countliststr(t_list **lst);
-void	pf_getvaarg(va_list ap, t_list **items);
+int				pf_getcontent(const char *str, t_list **items);
+size_t			pf_countliststr(t_list **lst);
+void			pf_getvaarg(va_list ap, t_list **items);
 
 /*
 ** flags handling
@@ -165,38 +164,38 @@ void	pf_getvaarg(va_list ap, t_list **items);
 ** with the right flags, width, height, specifiers
 */
 
-size_t	pf_getflags(char *str, int *flags);
-size_t	pf_getwidth(char *str, int *number);
-size_t	pf_getlength(char*str, int *length);
-void	pf_flags_add(t_content *cnt);
-void	pf_flags_padding(t_content *cnt);
+size_t			pf_getflags(char *str, int *flags);
+size_t			pf_getwidth(char *str, int *number);
+size_t			pf_getlength(char*str, int *length);
+void			pf_flags_add(t_content *cnt);
+void			pf_flags_padding(t_content *cnt);
 
 /*
 ** content conversion
 */
 
-void	pf_convert_integer(t_content *content, short type, size_t base);
-void	pf_convert_content(t_content *content);
-void	pf_convertlist(t_list **lst);
-void	pf_convert_integer(t_content *cnt, short type, size_t base);
-void	pf_convert_uinteger(t_content *cnt, short type, size_t base);
-void	pf_convert_shortest_floatmant(t_content *cnt);
-void	pf_convert_mantissa(t_content *cnt);
-void	pf_convert_float(t_content *cnt);
+void			pf_convert_integer(t_content *content, short type, size_t base);
+void			pf_convert_content(t_content *content);
+void			pf_convertlist(t_list **lst);
+void			pf_convert_integer(t_content *cnt, short type, size_t base);
+void			pf_convert_uinteger(t_content *cnt, short type, size_t base);
+void			pf_convert_shortest_floatmant(t_content *cnt);
+void			pf_convert_mantissa(t_content *cnt);
+void			pf_convert_float(t_content *cnt);
 
 /*
 ** strings
 */
 
-char	*ft_chr_unicode(wchar_t c, int limit_1);
-void	pf_writecharstr(char *s);
-char	*pf_strchecknull(char *str);
+char			*ft_chr_unicode(wchar_t c, int limit_1);
+void			pf_writecharstr(char *s);
+char			*pf_strchecknull(char *str);
 
 /*
 ** memory
 */
 
-void	pf_fillblank(t_content **content);
-void	pf_freelist(t_list **lst);
+void			pf_fillblank(t_content **content);
+void			pf_freelist(t_list **lst);
 
 #endif
