@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+        */
+/*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 06:31:07 by iwillens          #+#    #+#             */
-/*   Updated: 2020/02/10 07:50:49 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:33:04 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@
 # include <stdlib.h>
 # include <limits.h>
 
-# ifndef NULL
-#  define NULL 0
-# endif
-
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}				t_list;
+}	t_list;
 
-typedef struct	s_ldouble
+typedef struct s_ldouble
 {
 	short				signal;
 	unsigned long long	mantissa;
 	unsigned long long	exponent;
-}				t_ldouble;
+}	t_ldouble;
 
 char			*ft_itoa(int n);
 int				ft_isalpha(int c);
@@ -77,13 +73,10 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 t_list			*ft_lstmap(t_list *lst,
-									void *(*f)(void *), void (*del)(void *));
+					void *(*f)(void *), void (*del)(void *));
 char			*ft_strnstr(const char *haystack,
-										const char *needle, size_t len);
-size_t			ft_strfind_start(const char *str, const char *set);
-size_t			ft_strfind_end(const char *str, const char *set);
-char			*ft_itoa_base(long long int n, size_t base, char optsigned);
-char			*ft_ftoa_base(long double n, size_t prec);
+					const char *needle, size_t len);
+void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 int				ft_islower(int c);
 int				ft_isspace(int c);
 int				ft_isupper(int c);
@@ -94,13 +87,7 @@ int				ft_isblank(int c);
 void			ft_putendl(char *s);
 char			*ft_strndup(const char *s1, size_t n);
 size_t			ft_strfind_first(const char *str, const char *set);
-char			*ft_insertchr_end(char *str, char c);
-char			*ft_fillnchr_end(char *str, char c, size_t n);
-char			*ft_insertchr_start(char *str, char c);
-char			*ft_fillnchr_start(char *str, char c, size_t n);
 int				ft_isnumeric(char *str);
-int				ft_negative_tozero (int n);
-int				ft_negative_topositive (int n);
-size_t			bit_counter(int c);
+char			*ft_itoa_base(long long int n, size_t base, char optsigned);
 
 #endif

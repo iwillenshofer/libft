@@ -3,94 +3,111 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iwillens <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/01/21 18:49:08 by iwillens          #+#    #+#              #
-#    Updated: 2020/02/08 22:50:16 by iwillens         ###   ########.fr        #
+#    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
+#    Updated: 2024/05/28 17:23:51 by iwillens         ###   ########.fr        #
 #                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+# *** Main Definitions                                                         #
 # **************************************************************************** #
 
 NAME = libft.a
 
-HEADERS = libft.h
+CC = clang
+CCFLAGS = -Wall -Werror -Wextra
 
-SRCS = 	ft_atoi.c \
-			ft_bzero.c \
-			ft_calloc.c \
-			ft_isalnum.c \
-			ft_isalpha.c \
-			ft_isascii.c \
-			ft_isdigit.c \
-			ft_isprint.c \
-			ft_memccpy.c \
-			ft_memcpy.c \
-			ft_memchr.c \
-			ft_memcmp.c \
-			ft_memmove.c \
-			ft_memset.c \
-			ft_strchr.c \
-			ft_strncmp.c \
-			ft_strdup.c \
-			ft_strlcat.c \
-			ft_strlcpy.c \
-			ft_strlen.c \
-			ft_strnstr.c \
-			ft_strrchr.c \
-			ft_tolower.c \
-			ft_toupper.c \
-		    ft_substr.c \
-			ft_strjoin.c \
-			ft_strtrim.c \
-			ft_split.c \
-			ft_itoa.c \
-			ft_strmapi.c \
-			ft_putnbr_fd.c \
-			ft_putendl_fd.c \
-			ft_putstr_fd.c \
-			ft_putchar_fd.c \
-			ft_itoa_base.c \
-			ft_ftoa_base.c \
-			ft_insertchr.c \
-			ft_lstnew.c \
-		   ft_lstadd_front.c \
-		   ft_lstsize.c \
-		   ft_lstlast.c \
-		   ft_lstadd_back.c \
-		   ft_lstdelone.c \
-		   ft_lstclear.c \
-		   ft_lstiter.c \
-		   ft_lstmap.c \
-		   ft_islower_bonus.c \
-		   ft_isspace_bonus.c \
-		   ft_isupper_bonus.c \
-		   ft_putchar_bonus.c \
-		   ft_putnbr_bonus.c \
-		   ft_putstr_bonus.c \
-		   ft_isblank_bonus.c \
-		   ft_putendl_bonus.c \
-		   ft_strndup_bonus.c \
-		   ft_strtoupper.c \
-		   ft_itoa_base.c \
-		   ft_insertchr.c \
-		   ft_atoi.c \
-		   ft_ftoa_base.c \
-		   ft_negative_tozero.c \
-		   ft_bitcounter.c
-		   
-OBJS = $(patsubst %.c, %.o, $(SRCS))
+SRC_DIR = ./srcs
+OBJ_DIR = ./build
+INCLUDE_DIRS = .
+INCLUDES = $(addprefix -I, $(INCLUDE_DIRS))
+
+SRCS = ${SRC_DIR}/strings/ft_strnstr.c \
+		${SRC_DIR}/strings/ft_strlcpy.c \
+		${SRC_DIR}/strings/ft_strlen.c \
+		${SRC_DIR}/strings/ft_itoa_base.c \
+		${SRC_DIR}/strings/ft_strchr.c \
+		${SRC_DIR}/strings/ft_striteri.c \
+		${SRC_DIR}/strings/ft_strjoin.c \
+		${SRC_DIR}/strings/ft_split.c \
+		${SRC_DIR}/strings/ft_strrchr.c \
+		${SRC_DIR}/strings/ft_substr.c \
+		${SRC_DIR}/strings/ft_strncmp.c \
+		${SRC_DIR}/strings/ft_strmapi.c \
+		${SRC_DIR}/strings/ft_strtrim.c \
+		${SRC_DIR}/strings/ft_strndup.c \
+		${SRC_DIR}/strings/ft_strlcat.c \
+		${SRC_DIR}/strings/ft_strdup.c \
+		${SRC_DIR}/strings/ft_strtoupper.c \
+		${SRC_DIR}/strings/ft_atoi.c \
+		${SRC_DIR}/strings/ft_itoa.c \
+		${SRC_DIR}/char/ft_isdigit.c \
+		${SRC_DIR}/char/ft_isblank.c \
+		${SRC_DIR}/char/ft_isascii.c \
+		${SRC_DIR}/char/ft_isprint.c \
+		${SRC_DIR}/char/ft_toupper.c \
+		${SRC_DIR}/char/ft_isalpha.c \
+		${SRC_DIR}/char/ft_islower.c \
+		${SRC_DIR}/char/ft_isupper.c \
+		${SRC_DIR}/char/ft_isalnum.c \
+		${SRC_DIR}/char/ft_isspace.c \
+		${SRC_DIR}/char/ft_tolower.c \
+		${SRC_DIR}/memory/ft_memcmp.c \
+		${SRC_DIR}/memory/ft_bzero.c \
+		${SRC_DIR}/memory/ft_memcpy.c \
+		${SRC_DIR}/memory/ft_memccpy.c \
+		${SRC_DIR}/memory/ft_memchr.c \
+		${SRC_DIR}/memory/ft_memset.c \
+		${SRC_DIR}/memory/ft_memmove.c \
+		${SRC_DIR}/memory/ft_calloc.c \
+		${SRC_DIR}/lists/ft_lstadd_back.c \
+		${SRC_DIR}/lists/ft_lstnew.c \
+		${SRC_DIR}/lists/ft_lstlast.c \
+		${SRC_DIR}/lists/ft_lstclear.c \
+		${SRC_DIR}/lists/ft_lstiter.c \
+		${SRC_DIR}/lists/ft_lstmap.c \
+		${SRC_DIR}/lists/ft_lstsize.c \
+		${SRC_DIR}/lists/ft_lstadd_front.c \
+		${SRC_DIR}/lists/ft_lstdelone.c \
+		${SRC_DIR}/io/ft_putstr_fd.c \
+		${SRC_DIR}/io/ft_putnbr.c \
+		${SRC_DIR}/io/ft_putnbr_fd.c \
+		${SRC_DIR}/io/ft_putendl.c \
+		${SRC_DIR}/io/ft_putendl_fd.c \
+		${SRC_DIR}/io/ft_putchar.c \
+		${SRC_DIR}/io/ft_putchar_fd.c \
+		${SRC_DIR}/io/ft_putstr.c
+
+
+OBJS = $(SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o)
+DEPS = $(OBJS:.o=.d)
+
+# **************************************************************************** #
+# *** Main Rules                                                               #
+# **************************************************************************** #
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-	ar -r $(NAME) $(OBJS)
+${NAME} : ${OBJS} Makefile
+	@ar -r ${NAME} ${OBJS}
+	@echo "\033[95m${NAME} is built. \033[0m"
 
-OBJS : $(SRCS) $(HEADERS)
-	gcc -c -Wall -Wextra -Werror $(SRCS) -o $(OBJS)
+${OBJ_DIR}/%.o: $(SRC_DIR)/%.c Makefile
+	@mkdir -p ${@D}
+	@${CC} ${CCFLAGS} -MMD -c $< ${INCLUDES} -o $@
 
-clean: 
-	@rm -f $(OBJS)
+# **************************************************************************** #
+# *** Common Rules                                                             #
+# **************************************************************************** #
 
-fclean : clean
-	@rm -f $(NAME)
+clean:
+	@rm -rf ${OBJ_DIR}
 
-re : fclean libft.a
+fclean: clean
+	@rm -rf ./${NAME}
+
+re: fclean all
+
+-include $(DEPENDS)

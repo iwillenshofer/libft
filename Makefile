@@ -3,50 +3,85 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: iwillens <iwillens@student.42.fr>          +#+  +:+       +#+         #
+#    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/04 01:52:48 by iwillens          #+#    #+#              #
-#    Updated: 2020/02/10 11:17:59 by iwillens         ###   ########.fr        #
+#    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
+#    Updated: 2024/05/28 23:08:28 by iwillens         ###   ########.fr        #
 #                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+# *** Main Definitions                                                         #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRCS =  ft_printf.c \
-		pf_contenthandling.c \
-		pf_conversions.c \
-		pf_errorhandling.c \
-		pf_flagshandling.c \
-		pf_flagsapply.c \
-		ft_print_unicode.c \
-		pf_stringhandling.c \
-		pf_freemem.c \
-		pf_flagspadding.c \
-		pf_conversionsinteger.c \
-		pf_conversionsfloat.c \
-		pf_vaarg.c
+CC = clang
+CCFLAGS = -Wall -Werror -Wextra
 
-OBJS = $(patsubst %.c, %.o, $(SRCS))
+SRC_DIR = ./srcs/
+OBJ_DIR = ./build
+INCLUDE_DIRS = . ./libft/
+INCLUDES = $(addprefix -I, $(INCLUDE_DIRS))
 
-all :  $(NAME)
+SRCS = ${SRC_DIR}/pf_errorhandling.c \
+		${SRC_DIR}/pf_negative_topositive.c \
+		${SRC_DIR}/pf_flagsapply.c \
+		${SRC_DIR}/pf_stringhandling.c \
+		${SRC_DIR}/pf_conversions.c \
+		${SRC_DIR}/pf_flagshandling.c \
+		${SRC_DIR}/ft_printf.c \
+		${SRC_DIR}/pf_conversionsinteger.c \
+		${SRC_DIR}/pf_freemem.c \
+		${SRC_DIR}/pf_vaarg.c \
+		${SRC_DIR}/pf_insertchr.c \
+		${SRC_DIR}/pf_flagspadding.c \
+		${SRC_DIR}/pf_contenthandling.c
 
-$(NAME) : $(OBJS) 
-	cd libft; make all
-	cp libft/libft.a ./$(NAME)
-	ar -rc $(NAME) $(OBJS) 
+OBJS = $(SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o)
+DEPS = $(OBJS:.o=.d)
+# **************************************************************************** #
+# *** Libft Definitions                                                        #
+# **************************************************************************** #
+LIBFT_DIR = ./libft
+LIBFT = ${LIBFT_DIR}/libft.a
 
-OBJS : $(SRCS) 
-	gcc -c -Wall -Wextra -Werror $(SRCS) -o $(OBJS) 
 
+# **************************************************************************** #
+# *** Main Rules                                                               #
+# **************************************************************************** #
 
-bonus : all
-	
-clean: 
-	@rm -f $(OBJS) $(OBJSLIBFT)
-	@cd libft; make clean;
+all : ${NAME}
 
-fclean : clean
-	@rm -f $(NAME)
-	@cd libft; make fclean;
+bonus: all
 
-re : fclean libftprintf.a
+${NAME}: ${OBJS} Makefile ${LIBFT}
+	cp ${LIBFT} ./${NAME}
+	ar -r ${NAME} ${OBJS}
+	@echo "\033[95m${NAME} is built. \033[0m"
+
+${OBJ_DIR}/%.o: $(SRC_DIR)/%.c
+	@mkdir -p ${@D}
+	@${CC} ${CCFLAGS} -MMD -c $< ${INCLUDES} -o $@
+
+# **************************************************************************** #
+# *** Libft Rules                                                              #
+# **************************************************************************** #
+
+${LIBFT}:
+	@make -s -C ${LIBFT_DIR}
+# **************************************************************************** #
+# *** Common Rules                                                             #
+# **************************************************************************** #
+
+clean:
+	@rm -rf ${OBJ_DIR}
+	@make -C ${LIBFT_DIR} clean
+
+fclean: clean
+	@rm -rf ./${NAME}
+	@make -C ${LIBFT_DIR} fclean
+
+re: fclean all
+
+-include $(DEPENDS)
