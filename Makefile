@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/29 17:38:47 by iwillens         ###   ########.fr        #
+#    Updated: 2024/05/30 12:03:57 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,17 +26,19 @@ INCLUDES = $(addprefix -I, $(INCLUDE_DIRS))
 
 SRCS = ${SRC_DIR}/process_int.c \
 		${SRC_DIR}/process_uint.c \
+		${SRC_DIR}/process_string.c \
+		${SRC_DIR}/errorhandling.c \
 		${SRC_DIR}/print.c \
-		${SRC_DIR}/pf_errorhandling.c \
-		${SRC_DIR}/pf_negative_topositive.c \
-		${SRC_DIR}/pf_flagsapply.c \
-		${SRC_DIR}/pf_stringhandling.c \
-		${SRC_DIR}/pf_flagshandling.c \
+		${SRC_DIR}/flagshandling.c \
 		${SRC_DIR}/ft_printf.c \
-		${SRC_DIR}/pf_vaarg.c \
-		${SRC_DIR}/pf_insertchr.c \
-		${SRC_DIR}/pf_flagspadding.c \
-		${SRC_DIR}/pf_contenthandling.c
+		${SRC_DIR}/vaarg.c
+#		${SRC_DIR}/pf_negative_topositive.c \
+#		${SRC_DIR}/pf_errorhandling.c \
+#		${SRC_DIR}/pf_flagsapply.c \
+#		${SRC_DIR}/pf_stringhandling.c \
+#		${SRC_DIR}/pf_insertchr.c \
+#		${SRC_DIR}/pf_flagspadding.c \
+#		${SRC_DIR}/pf_contenthandling.c
 
 OBJS = $(SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o)
 DEPS = $(OBJS:.o=.d)

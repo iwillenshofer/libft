@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:27:02 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/29 21:12:22 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:47:10 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void	process_int(t_content *cnt)
 		printchar(cnt->prt.signal_char, cnt);
 	printnchar('0', cnt->prt.precision_len, cnt);
 	if ((!cnt->prec.wc || cnt->prec.nb || cnt->value.i))
-		cnt->counter += ft_putnbr_base(cnt->value.i, PF_BASE_10, 1);
+		printnumber(cnt->value.i, PF_BASE_10, cnt);
 	if (cnt->flags & PF_FLAG_MINUS)
 		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, cnt);
-
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_flagshandling.c                                 :+:      :+:    :+:   */
+/*   flagshandling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 11:33:26 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/29 11:11:50 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 12:06:30 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	pf_getflags(const char *str, int *flags)
+size_t	getflags(const char *str, int *flags)
 {
 	size_t pos;
 
@@ -38,7 +38,7 @@ size_t	pf_getflags(const char *str, int *flags)
 	return (pos);
 }
 
-size_t	pf_getwidth(const char *str, int *number)
+size_t	getwidth(const char *str, int *number)
 {
 	size_t	pos;
 

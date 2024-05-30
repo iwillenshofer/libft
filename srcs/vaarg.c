@@ -6,11 +6,19 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:15:49 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/29 17:31:30 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:37:07 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*pf_strchecknull(char *str)
+{
+	if (!str)
+		return (STR_NULL);
+	else
+		return (str);
+}
 
 /*
 ** now that we know the types we are dealing with, we can get the

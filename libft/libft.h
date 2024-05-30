@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 06:31:07 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/29 16:48:29 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:21:43 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ char	*ft_itoa_base(long long int n, size_t base, char optsigned);
 **	add-ons
 */
 size_t	ft_numlen_base(long long n, char *base);
-size_t	ft_putnbr_base(long long n, char *base, int fd);
+ssize_t	ft_putnbr_base(long long n, char *base, int fd);
 size_t	ft_strfind_first(const char *str, const char *set);
+ssize_t	ft_putchar_fd_count(char c, int fd);
 
 #endif
