@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_vaarg.c                                         :+:      :+:    :+:   */
+/*   vaarg.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:15:49 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 11:37:07 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:56:57 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*pf_strchecknull(char *str)
 
 /*
 ** now that we know the types we are dealing with, we can get the
-** arguments from the va_list and store them in the content struct.
+** arguments from the va_list and store them in the cnt struct.
 */
 void		get_values(va_list *ap, t_content *cnt)
 {

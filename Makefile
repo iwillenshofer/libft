@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/30 12:03:57 by iwillens         ###   ########.fr        #
+#    Updated: 2024/05/30 17:13:37 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS = ${SRC_DIR}/process_int.c \
 		${SRC_DIR}/print.c \
 		${SRC_DIR}/flagshandling.c \
 		${SRC_DIR}/ft_printf.c \
-		${SRC_DIR}/vaarg.c
+		${SRC_DIR}/vaarg.c \
+		${SRC_DIR}/buffer.c
 #		${SRC_DIR}/pf_negative_topositive.c \
 #		${SRC_DIR}/pf_errorhandling.c \
 #		${SRC_DIR}/pf_flagsapply.c \

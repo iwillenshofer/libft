@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:49:47 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 11:07:57 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:07:10 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ ssize_t	ft_putnbr_base(long long n, char *base, int fd)
 	if (!base)
 		base = "0123456789";
 	base_len = ft_strlen(base);
+	if (base_len < 2)
+		return (-1);
 	count = handle_signal(n, &nbr, base_len, fd);
 	if (count == -1)
 		return (-1);

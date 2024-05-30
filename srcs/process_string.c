@@ -6,57 +6,52 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:48:53 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 11:50:16 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:04:01 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void process_char(t_content *cnt)
+void process_char(t_printf *printf)
 {
-    char padding_char;
-    int padding;
+	t_content *cnt;
 
-    padding_char = ' ';
-    padding = 0;
+	cnt = &printf->cnt;
+    cnt->prt.padding_char = ' ';
     if (cnt->flags & PF_FLAG_ZERO && !(cnt->flags & PF_FLAG_MINUS))
-        padding_char = '0';
+        cnt->prt.padding_char = '0';
     if (cnt->width.nb > 1)
-        padding = cnt->width.nb - 1;
+        cnt->prt.padding_len = cnt->width.nb - 1;
     if (!(cnt->flags & PF_FLAG_MINUS))
-        printnchar(padding_char, padding, cnt);
-    printchar(cnt->value.i, cnt);
+        printnchar(cnt->prt.padding_char, cnt->prt.padding_len, printf);
+    printchar(cnt->value.i, printf);
     if ((cnt->flags & PF_FLAG_MINUS))
-        printnchar(padding_char, padding, cnt);
+        printnchar(cnt->prt.padding_char, cnt->prt.padding_len, printf);
 }
 
 /*
 ** printing functions
 */
-void	process_string(t_content *cnt)
+void	process_string(t_printf *printf)
 {
-	char padding_char;
-	size_t padding;
-	size_t	len;
 	char *tmp;
+	t_content *cnt;
 
+	cnt = &printf->cnt;
 	tmp = cnt->value.s;
-	len = 0;
-	padding = 0;
-	padding_char = ' ';
-	while (*tmp && (!(cnt->prec.wc) || (len < cnt->prec.nb)))
+	cnt->prt.padding_char = ' ';
+	while (*tmp && (!(cnt->prec.wc) || (cnt->prt.num_len < cnt->prec.nb)))
 	{
-		len++;
+		cnt->prt.num_len++;
 		tmp++;
 	}
 	if (cnt->flags & PF_FLAG_ZERO && cnt->flags & PF_FLAG_MINUS)
-		padding_char = '0';
-
-	if (cnt->width.nb > len)
-		padding = cnt->width.nb - len;
+		cnt->prt.padding_char = '0';
+	if (cnt->width.nb > cnt->prt.num_len)
+		cnt->prt.padding_len = cnt->width.nb - cnt->prt.num_len;
 	if (!(cnt->flags & PF_FLAG_MINUS))
-		printnchar(padding_char, padding, cnt);
-	printnstr(cnt->value.s, len, cnt);
+		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, printf);
+	printnstr(cnt->value.s, cnt->prt.num_len, printf);
 	if ((cnt->flags & PF_FLAG_MINUS))
-		printnchar(padding_char, padding, cnt);
+		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, printf);
 }

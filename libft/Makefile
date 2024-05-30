@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/30 10:21:05 by iwillens         ###   ########.fr        #
+#    Updated: 2024/05/30 14:22:11 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,8 @@ SRCS = ${SRC_DIR}/strings/ft_strnstr.c \
 		${SRC_DIR}/io/ft_putchar_fd.c \
 		${SRC_DIR}/io/ft_putstr.c \
 		${SRC_DIR}/io/ft_putnbr_base.c \
-		${SRC_DIR}/io/ft_putchar_fd_count.c
+		${SRC_DIR}/io/ft_putchar_fd_count.c \
+		${SRC_DIR}/io/ft_itoa_base_buf.c
 
 
 OBJS = $(SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o)

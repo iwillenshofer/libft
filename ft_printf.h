@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 12:11:20 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:02:31 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <stddef.h>
+
+# define PRINTF_BUFFER_SIZE 4096
+# define PRINFT_BUFFERNB_SIZE 96
 
 # define PRINTF_FAILURE -1
 # define PRINTF_SUCCESS 0
@@ -102,25 +105,41 @@ typedef struct s_content
 	t_contwidth			prec;
 }	t_content;
 
+typedef struct s_printf
+{
+	char			buffer[PRINTF_BUFFER_SIZE];
+	size_t			buffer_pos;
+	t_content		cnt;
+	int				fd;
+	char			*str;
+	size_t			counter;
+}	t_printf;
+
 /*
 ** main function
 */
 
 int				ft_printf(const char *str, ...);
-void			process_int(t_content *cnt);
-void			process_uint(t_content *cnt);
-void			process_string(t_content *cnt);
-void			process_char(t_content *cnt);
+void			process_int(t_printf *printf);
+void			process_uint(t_printf *printf);
+void			process_string(t_printf *printf);
+void 			process_char(t_printf *printf);
 void			get_values(va_list *ap, t_content *content);
 
 /*
 ** print.c
 */
-ssize_t			printchar(char c, t_content *content);
-ssize_t			printnchar(char c, int n, t_content *content);
-ssize_t			printnstr(char *str, int n, t_content *content);
-ssize_t			printstr(char *str, t_content *content);
-ssize_t			printnumber(long long n, char *base, t_content *content);
+ssize_t			printchar(char c, t_printf *printf);
+ssize_t			printnchar(char c, int n, t_printf *printf);
+ssize_t			printnstr(char *str, int n, t_printf *printf);
+ssize_t			printstr(char *str, t_printf *printf);
+ssize_t			printnumber(long long n, char *base, t_printf *printf);
+
+/*
+** buffer.c
+*/
+void			dump_buffer(t_printf *printf);
+void			dump_if_needed(t_printf *printf);
 
 /*
 ** error handling

@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 06:31:07 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 10:21:43 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:18:34 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
-typedef struct s_ldouble
-{
-	short				signal;
-	unsigned long long	mantissa;
-	unsigned long long	exponent;
-}	t_ldouble;
 
 char	*ft_itoa(int n);
 int		ft_isalpha(int c);
@@ -97,5 +90,6 @@ size_t	ft_numlen_base(long long n, char *base);
 ssize_t	ft_putnbr_base(long long n, char *base, int fd);
 size_t	ft_strfind_first(const char *str, const char *set);
 ssize_t	ft_putchar_fd_count(char c, int fd);
+ssize_t	ft_itoa_base_buf(long long n, char *base, char *buf);
 
 #endif

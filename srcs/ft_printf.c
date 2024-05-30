@@ -6,42 +6,42 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:06:07 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 12:06:29 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:18:37 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	printcontent(t_content *content)
+void	printcontent(t_printf *printf)
 {
-	if (content->type == 's')
-		process_string(content);
-	else if (content->type == 'c')
-		process_char(content);
-	else if (content->type == 'd' || content->type == 'i')
-		process_int(content);
-	else if (content->type == 'u' || content->type == 'x' || content->type == 'X' || content->type == 'p')
-		process_uint(content);
+	if (printf->cnt.type == 's')
+		process_string(printf);
+	else if (printf->cnt.type == 'c')
+		process_char(printf);
+	else if (printf->cnt.type == 'd' || printf->cnt.type == 'i')
+		process_int(printf);
+	else if (printf->cnt.type == 'u' || printf->cnt.type == 'x' || printf->cnt.type == 'X' || printf->cnt.type == 'p')
+		process_uint(printf);
 }
 /*
 ** This function is responsible for parsing the precision flag
 ** if there is a '.'
 */
-static const char		*parse_precision(const char *str, t_content *content,
+static const char		*parse_precision(const char *str, t_content *cnt,
 	int number)
 {
 	if (*str == '.')
 	{
 		str++;
 		str += getwidth(str, &number);
-		content->prec.nb = number;
+		cnt->prec.nb = number;
 		if (number == 0 && *str == '*')
 		{
-			content->prec.wc = PF_WC_AP;
+			cnt->prec.wc = PF_WC_AP;
 			str++;
 		}
 		else
-			content->prec.wc = PF_WC_SET;
+			cnt->prec.wc = PF_WC_SET;
 	}
 	return (str);
 }
@@ -50,24 +50,25 @@ static const char		*parse_precision(const char *str, t_content *content,
 ** go through the whole string passed by the user (%...s)
 ** to check for flags, width, precision, modifier and specifier.
 */
-static int		setcontent(const char *str, t_content *content)
+static int		setcontent(const char *str, t_content *cnt)
 {
 	int		flags;
 	int		number;
+
 	str += getflags(str, &flags);
-	content->flags = flags;
+	cnt->flags = flags;
 	str += getwidth(str, &number);
-	content->width.nb = number;
+	cnt->width.nb = number;
 	if (number == 0 && *str == '*')
 	{
-		content->width.wc = PF_WC_AP;
+		cnt->width.wc = PF_WC_AP;
 		str++;
 	}
 	else
-		content->width.wc = PF_WC_SET;
-	str = parse_precision(str, content, number);
-	if (*str != content->type)
-		return (fatal_specifier(content->type, *str));
+		cnt->width.wc = PF_WC_SET;
+	str = parse_precision(str, cnt, number);
+	if (*str != cnt->type)
+		return (fatal_specifier(cnt->type, *str));
 	return (PRINTF_SUCCESS);
 }
 
@@ -75,26 +76,25 @@ static int		setcontent(const char *str, t_content *content)
 ** This function is responsible for performing the substitution of the
 ** specifiers in the string.
 */
-int	perform_substitution(const char **str, va_list *ap)
+int	perform_substitution(const char **str, va_list *ap, t_printf *printf)
 {
-	t_content	content;
 	int			counter;
 	size_t		pos;
 
 	(void)ap;
 	counter = 0;
-	ft_bzero(&content, sizeof(t_content));
+	ft_bzero(&(printf->cnt), sizeof(t_content));
 	pos = ft_strfind_first(*str, PF_SPECIFIERS);
 	if (!pos)
 		return (fatal(ERR_UNTERMINATED_SPEC, 1));
-	content.type = *(*str + (pos - 1));
-	if (setcontent(*str, &content) == PRINTF_FAILURE)
+	printf->cnt.type = *(*str + (pos - 1));
+	if (setcontent(*str, &printf->cnt) == PRINTF_FAILURE)
 		return (PRINTF_FAILURE);
-	get_values(ap, &content);
-	printcontent(&content);
+	get_values(ap, &printf->cnt);
+	printcontent(printf);
 	*str += pos;
-	counter += content.counter;
-	if (content.error)
+	counter += printf->cnt.counter;
+	if (printf->cnt.error)
 		return (fatal(ERR_PRINTINGERROR, 0));
 	return (counter);
 }
@@ -105,29 +105,31 @@ int	perform_substitution(const char **str, va_list *ap)
 int	ft_printf(const char *str, ...)
 {
 	va_list		ap;
-	int			counter;
 	int			ret;
+	t_printf	printf;
 
-	counter = 0;
+	ft_bzero(&printf, sizeof(t_printf));
+	printf.counter = 0;
 	va_start(ap, str);
 	while (*str)
 	{
 		if (*str == '%')
 		{
 			str++;
-			ret = perform_substitution(&str, &ap);
+			ret = perform_substitution(&str, &ap, &printf);
 			if (ret == PRINTF_FAILURE)
 				return (PRINTF_FAILURE);
-			counter += ret;
+			printf.counter += ret;
 		}
 		else
 		{
-			if (ft_putchar_fd_count(*str, 1) == PRINTF_FAILURE)
+			if (printchar(*str, &printf) == PRINTF_FAILURE)
 				return (PRINTF_FAILURE);
-			counter++;
+			printf.counter++;
 			str++;
 		}
 	}
+	dump_buffer(&printf);
 	va_end(ap);
-	return (counter);
+	return (printf.counter);
 }

@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:27:02 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 10:47:10 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:03:03 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,23 @@ static void set_number(t_content *cnt)
 		cnt->prt.num_len = ft_numlen_base(cnt->value.i, PF_BASE_10);
 }
 
-void	process_int(t_content *cnt)
+void	process_int(t_printf *printf)
 {
+	t_content *cnt;
+
+	cnt = &printf->cnt;
 	set_signal(cnt);
 	set_number(cnt);
 	set_padding_and_precision(cnt);
 	if (cnt->prt.padding_len && cnt->prt.padding_char == '0' && cnt->prt.signal_char)
-		printchar(cnt->prt.signal_char, cnt);
+		printchar(cnt->prt.signal_char, printf);
 	if (!(cnt->flags & PF_FLAG_MINUS))
-		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, cnt);
+		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, printf);
 	if ((!cnt->prt.padding_len || cnt->prt.padding_char == ' ') && cnt->prt.signal_char)
-		printchar(cnt->prt.signal_char, cnt);
-	printnchar('0', cnt->prt.precision_len, cnt);
+		printchar(cnt->prt.signal_char, printf);
+	printnchar('0', cnt->prt.precision_len, printf);
 	if ((!cnt->prec.wc || cnt->prec.nb || cnt->value.i))
-		printnumber(cnt->value.i, PF_BASE_10, cnt);
+		printnumber(cnt->value.i, PF_BASE_10, printf);
 	if (cnt->flags & PF_FLAG_MINUS)
-		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, cnt);
+		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, printf);
 }
