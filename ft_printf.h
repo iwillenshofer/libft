@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/28 23:54:13 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:21:50 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,32 @@
 # include <stdarg.h>
 # include <stddef.h>
 
+# define PRINTF_FAILURE -1
+# define PRINTF_SUCCESS 0
+# define ERR_UNTERMINATED_SPEC "error: unterminated specifier\n"
+
 # ifndef T_UNSIGNED
 #  define T_UNSIGNED 0
 #  define T_SIGNED 1
 # endif
 
+# define STR_NULL "(null)"
+
+# define PF_BASE_10 "0123456789"
+# define PF_BASE_16 "0123456789abcdef"
+# define PF_BASE_16U "0123456789ABCDEF"
 #  define PF_SPECIFIERS "cspdiuxX%" //# removed: "nGgEeFfo"
 
-#  define PF_SPEC_INT "di"
-#  define PF_SPEC_UINT "upxX"
-#  define PF_SPEC_LLONG "p"
+#  define PF_SPEC_INT "dic"
+#  define PF_SPEC_UINT "uxX"
+#  define PF_SPEC_PTR "p"
+#  define PF_SPEC_STR "s"
+#  define PF_SPEC_CHAR "%"
 
 # ifndef PF_WC_SET
-#  define PF_WC_SET 0
-#  define PF_WC_AP 1
-#  define PF_WC_DEFAULT 2
+#  define PF_WC_DEFAULT 0
+#  define PF_WC_SET 1
+#  define PF_WC_AP 2
 # endif
 
 # ifndef PF_FLAGS
@@ -88,8 +99,8 @@ typedef long long int			t_lli;
 
 typedef struct s_contwidth
 {
-	int			nb;
-	short		wc;
+	size_t		nb;
+	size_t		wc;
 	int			was_negative;
 }	t_contwidth;
 
@@ -112,11 +123,36 @@ typedef struct s_contwidth
 ** --> [orig_content] the full string of the identifier (or pure string);
 */
 
+typedef union u_data {
+    char				*s;
+	long long			i;
+	unsigned long long	u;
+}	t_data;
+
+/*
+** the following struct is used to store the information about the
+** conversion, during printing.
+*/
+typedef struct s_prtinfo
+{
+	size_t		num_len;
+	size_t		padding_len;
+	size_t		precision_len;
+	char		padding_char;
+	char		signal_char;
+	int			sign;
+	char		prepend[3];
+	char		*base;
+}	t_prtinfo;
+
 typedef struct s_content
 {
-	char				*orig_content;
-	void				*value;
 	char				type;
+	size_t 				pos;
+	size_t				counter;
+	t_data				value;
+	t_prtinfo			prt;
+	char				*orig_content;
 	int					flags;
 	int					length;
 	t_contwidth			width;
@@ -126,11 +162,22 @@ typedef struct s_content
 	struct s_content	*next;
 }	t_content;
 
+
+
 /*
 ** main function
 */
 
 int				ft_printf(const char *str, ...);
+void			process_int(t_content *cnt);
+void			process_uint(t_content *cnt);
+/*
+** print.c
+*/
+void			printchar(char c, t_content *content);
+void			printnchar(char c, int n, t_content *content);
+void			printnstr(char *str, int n, t_content *content);
+void			printstr(char *str, t_content *content);
 
 /*
 ** error handling
@@ -147,7 +194,7 @@ void			pf_strerr_invalidspecifier(char expected, char found);
 
 int				pf_getcontent(const char *str, t_list **items);
 size_t			pf_countliststr(t_list **lst);
-void			pf_getvaarg(va_list *ap, t_list **items);
+void			get_values(va_list *ap, t_content *content);
 
 /*
 ** flags handling
@@ -155,8 +202,8 @@ void			pf_getvaarg(va_list *ap, t_list **items);
 ** with the right flags, width, height, specifiers
 */
 
-size_t			pf_getflags(char *str, int *flags);
-size_t			pf_getwidth(char *str, int *number);
+size_t			pf_getflags(const char *str, int *flags);
+size_t			pf_getwidth(const char *str, int *number);
 void			pf_flags_add(t_content *cnt);
 void			pf_flags_padding(t_content *cnt);
 

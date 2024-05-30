@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/28 17:23:51 by iwillens         ###   ########.fr        #
+#    Updated: 2024/05/29 15:52:18 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME = libft.a
 
 CC = clang
-CCFLAGS = -Wall -Werror -Wextra
+CCFLAGS = -Wall -Werror -Wextra# -fsanitize=address -g
 
 SRC_DIR = ./srcs
 OBJ_DIR = ./build
@@ -78,7 +78,8 @@ SRCS = ${SRC_DIR}/strings/ft_strnstr.c \
 		${SRC_DIR}/io/ft_putendl_fd.c \
 		${SRC_DIR}/io/ft_putchar.c \
 		${SRC_DIR}/io/ft_putchar_fd.c \
-		${SRC_DIR}/io/ft_putstr.c
+		${SRC_DIR}/io/ft_putstr.c \
+		${SRC_DIR}/io/ft_putnbr_base.c
 
 
 OBJS = $(SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o)

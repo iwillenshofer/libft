@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 21:43:22 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/29 00:14:54 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:46:23 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	pf_flags_add_sharp(t_content *cnt)
 {
 	if ((cnt->type == 'x' || cnt->type == 'X')
-		&& !*(t_ulli*)(cnt->value))
+		&& !cnt->value.u)
 			return ;
 	if (cnt->type == 'x' || cnt->type == 'p')
 	{

@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 04:39:03 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/28 23:00:27 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:32:09 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ size_t	pf_countliststr(t_list **lst)
 char	*pf_strchecknull(char *str)
 {
 	if (!str)
-		return ("(null)");
+		return (STR_NULL);
 	else
 		return (str);
 }

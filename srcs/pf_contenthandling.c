@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 11:34:49 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/28 23:54:43 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:27:04 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char		*pf_fillcontent_checkdot(char *str, t_content **content,
 ** go through the whole string passed by the user (%...s)
 ** to check for flags, width, precision, modifier and specifier.
 */
-
+#include <stdio.h>
 static void		pf_fillcontent(char *str, t_content **content)
 {
 	int		flags;
@@ -50,12 +50,13 @@ static void		pf_fillcontent(char *str, t_content **content)
 	(*content)->flags = flags;
 	str += pf_getwidth(str, &number);
 	(*content)->width.nb = number;
+	printf("NUMBER: %d\n", number);
 	if (number == 0 && *str == '*')
 	{
 		(*content)->width.wc = PF_WC_AP;
 		str++;
 	}
-	else
+	else if (number)
 		(*content)->width.wc = PF_WC_SET;
 	str = pf_fillcontent_checkdot(str, content, number);
 	if (*str != (*content)->type)

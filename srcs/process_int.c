@@ -1,0 +1,72 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   process_int.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/29 16:27:02 by iwillens          #+#    #+#             */
+/*   Updated: 2024/05/29 21:12:22 by iwillens         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+
+
+
+static void set_signal(t_content *cnt)
+{
+	if (cnt->value.i < 0)
+	{
+		cnt->value.i = -cnt->value.i;
+		cnt->prt.sign = 1;
+		cnt->prt.signal_char = '-';
+	}
+	else if (cnt->flags & PF_FLAG_PLUS)
+		cnt->prt.signal_char = '+';
+	else if (cnt->flags & PF_FLAG_SPACE)
+		cnt->prt.signal_char = ' ';
+}
+
+static void set_padding_and_precision(t_content *cnt)
+{
+	cnt->prt.padding_char = ' ';
+	if (cnt->prec.wc && cnt->prec.nb > cnt->prt.num_len)
+		cnt->prt.precision_len = cnt->prec.nb - cnt->prt.num_len;
+	if (cnt->width.wc && cnt->width.nb > cnt->prt.num_len + cnt->prt.precision_len)
+		cnt->prt.padding_len = cnt->width.nb - (cnt->prt.num_len + cnt->prt.precision_len);
+	if (cnt->prt.signal_char && cnt->prt.padding_len)
+		cnt->prt.padding_len--;
+	if (cnt->flags & PF_FLAG_ZERO && !(cnt->flags & PF_FLAG_MINUS) && (!cnt->prec.wc))
+		cnt->prt.padding_char = '0';
+
+}
+
+/*
+** number of digits is 0 if the precision is 0 and the value is 0
+*/
+static void set_number(t_content *cnt)
+{
+	if ((!cnt->prec.wc || cnt->prec.nb || cnt->value.i))
+		cnt->prt.num_len = ft_numlen_base(cnt->value.i, PF_BASE_10);
+}
+
+void	process_int(t_content *cnt)
+{
+	set_signal(cnt);
+	set_number(cnt);
+	set_padding_and_precision(cnt);
+	if (cnt->prt.padding_len && cnt->prt.padding_char == '0' && cnt->prt.signal_char)
+		printchar(cnt->prt.signal_char, cnt);
+	if (!(cnt->flags & PF_FLAG_MINUS))
+		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, cnt);
+	if ((!cnt->prt.padding_len || cnt->prt.padding_char == ' ') && cnt->prt.signal_char)
+		printchar(cnt->prt.signal_char, cnt);
+	printnchar('0', cnt->prt.precision_len, cnt);
+	if ((!cnt->prec.wc || cnt->prec.nb || cnt->value.i))
+		cnt->counter += ft_putnbr_base(cnt->value.i, PF_BASE_10, 1);
+	if (cnt->flags & PF_FLAG_MINUS)
+		printnchar(cnt->prt.padding_char, cnt->prt.padding_len, cnt);
+
+}

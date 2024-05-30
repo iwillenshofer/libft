@@ -6,12 +6,11 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 15:05:34 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/28 17:00:52 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:53:29 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
