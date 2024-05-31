@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:15:49 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 15:56:57 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:38:35 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*pf_strchecknull(char *str)
 ** now that we know the types we are dealing with, we can get the
 ** arguments from the va_list and store them in the cnt struct.
 */
-void		get_values(va_list *ap, t_content *cnt)
+void	get_values(va_list *ap, t_content *cnt)
 {
 	if (cnt->width.wc == PF_WC_AP)
 		cnt->width.nb = va_arg(*ap, int);
@@ -37,7 +37,7 @@ void		get_values(va_list *ap, t_content *cnt)
 	else if (ft_strchr(PF_SPEC_UINT, cnt->type))
 		cnt->value.u = va_arg(*ap, unsigned int);
 	else if (ft_strchr(PF_SPEC_STR, cnt->type))
-		cnt->value.s = pf_strchecknull((char*)va_arg(*ap, char*));
+		cnt->value.s = pf_strchecknull((char *)va_arg(*ap, char *));
 	else if (ft_strchr(PF_SPEC_CHAR, cnt->type))
 	{
 		cnt->value.i = (int)cnt->type;

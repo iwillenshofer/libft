@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:57:52 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 12:04:16 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:38:52 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	fatal(char *msg, int silent)
 	return (PRINTF_FAILURE);
 }
 
-int fatal_specifier(char expected, char found)
+int	fatal_specifier(char expected, char found)
 {
 	ft_putstr_fd("fatal error: invalid specifier '", 2);
 	ft_putchar_fd(found, 2);

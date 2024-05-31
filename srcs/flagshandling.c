@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 11:33:26 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 12:06:30 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:42:05 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	getflags(const char *str, int *flags)
 {
-	size_t pos;
+	size_t	pos;
 
 	pos = 0;
 	*flags = 0;
@@ -50,4 +50,3 @@ size_t	getwidth(const char *str, int *number)
 		*number = ft_atoi(str);
 	return (pos);
 }
-

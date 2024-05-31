@@ -21,14 +21,6 @@
 </p>
 <br>
 
-REFACTORED.
-
-STILL TO DO:
-
-[ ] norme
-[X] buffering
-[ ] fd
-
 > _This project is pretty straightforward, you have to recode printf. You will learn what is and how to implement variadic functions. Once you validate it, you will reuse this function in your future projects._
 
 [Download the Subject ⤓](en.subject.pdf)
@@ -64,6 +56,23 @@ STILL TO DO:
 </p>
 
 <br>
+
+### Modified Version, includes:
+
+```c
+/*original printf with buffering*/
+int	ft_printf(const char *str, ...);
+
+/*allows specifying a file descriptor to print into*/
+int	ft_dprintf(int fd, const char *str, ...);
+
+/*stores into a designated pre-allocated buffer*/
+int	ft_snprintf(char *dest, size_t size, const char *str, ...);
+
+/*returns an allocated char* */
+int	ft_asprintf(char **ret, const char *str, ...);
+
+```
 
 ### Usage
 ```bash
