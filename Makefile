@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/30 18:58:43 by iwillens         ###   ########.fr        #
+#    Updated: 2024/05/31 11:29:28 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,73 +14,121 @@
 # *** Main Definitions                                                         #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
 
 CC = clang
-CCFLAGS = -Wall -Werror -Wextra# -fsanitize=address -g
+CCFLAGS = -Wall -Werror -Wextra
 
-SRC_DIR = ./srcs/
+SRC_DIR = ./srcs
+
+LIBFT_SRC_DIR = ${SRC_DIR}/libft
+PRINTF_SRC_DIR = ${SRC_DIR}/printf
+GNL_SRC_DIR = ${SRC_DIR}/gnl
+
 OBJ_DIR = ./build
-INCLUDE_DIRS = . ./libft/
+INCLUDE_DIRS = ./includes
 INCLUDES = $(addprefix -I, $(INCLUDE_DIRS))
 
-SRCS = ${SRC_DIR}/process_int.c \
-		${SRC_DIR}/process_uint.c \
-		${SRC_DIR}/process_string.c \
-		${SRC_DIR}/errorhandling.c \
-		${SRC_DIR}/print.c \
-		${SRC_DIR}/flagshandling.c \
-		${SRC_DIR}/ft_printf.c \
-		${SRC_DIR}/vaarg.c \
-		${SRC_DIR}/buffer.c \
-		${SRC_DIR}/inner_printf.c
+LIBFT_SRCS = 	${LIBFT_SRC_DIR}/strings/ft_strnstr.c \
+				${LIBFT_SRC_DIR}/strings/ft_strlcpy.c \
+				${LIBFT_SRC_DIR}/strings/ft_strlen.c \
+				${LIBFT_SRC_DIR}/strings/ft_itoa_base.c \
+				${LIBFT_SRC_DIR}/strings/ft_strchr.c \
+				${LIBFT_SRC_DIR}/strings/ft_striteri.c \
+				${LIBFT_SRC_DIR}/strings/ft_strjoin.c \
+				${LIBFT_SRC_DIR}/strings/ft_split.c \
+				${LIBFT_SRC_DIR}/strings/ft_strrchr.c \
+				${LIBFT_SRC_DIR}/strings/ft_substr.c \
+				${LIBFT_SRC_DIR}/strings/ft_strncmp.c \
+				${LIBFT_SRC_DIR}/strings/ft_strmapi.c \
+				${LIBFT_SRC_DIR}/strings/ft_strtrim.c \
+				${LIBFT_SRC_DIR}/strings/ft_strndup.c \
+				${LIBFT_SRC_DIR}/strings/ft_strlcat.c \
+				${LIBFT_SRC_DIR}/strings/ft_strdup.c \
+				${LIBFT_SRC_DIR}/strings/ft_strtoupper.c \
+				${LIBFT_SRC_DIR}/strings/ft_atoi.c \
+				${LIBFT_SRC_DIR}/strings/ft_itoa.c \
+				${LIBFT_SRC_DIR}/char/ft_isdigit.c \
+				${LIBFT_SRC_DIR}/char/ft_isblank.c \
+				${LIBFT_SRC_DIR}/char/ft_isascii.c \
+				${LIBFT_SRC_DIR}/char/ft_isprint.c \
+				${LIBFT_SRC_DIR}/char/ft_toupper.c \
+				${LIBFT_SRC_DIR}/char/ft_isalpha.c \
+				${LIBFT_SRC_DIR}/char/ft_islower.c \
+				${LIBFT_SRC_DIR}/char/ft_isupper.c \
+				${LIBFT_SRC_DIR}/char/ft_isalnum.c \
+				${LIBFT_SRC_DIR}/char/ft_isspace.c \
+				${LIBFT_SRC_DIR}/char/ft_tolower.c \
+				${LIBFT_SRC_DIR}/memory/ft_memcmp.c \
+				${LIBFT_SRC_DIR}/memory/ft_bzero.c \
+				${LIBFT_SRC_DIR}/memory/ft_memcpy.c \
+				${LIBFT_SRC_DIR}/memory/ft_memccpy.c \
+				${LIBFT_SRC_DIR}/memory/ft_memchr.c \
+				${LIBFT_SRC_DIR}/memory/ft_memset.c \
+				${LIBFT_SRC_DIR}/memory/ft_memmove.c \
+				${LIBFT_SRC_DIR}/memory/ft_calloc.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstadd_back.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstnew.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstlast.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstclear.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstiter.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstmap.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstsize.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstadd_front.c \
+				${LIBFT_SRC_DIR}/lists/ft_lstdelone.c \
+				${LIBFT_SRC_DIR}/io/ft_putstr_fd.c \
+				${LIBFT_SRC_DIR}/io/ft_putnbr.c \
+				${LIBFT_SRC_DIR}/io/ft_putnbr_fd.c \
+				${LIBFT_SRC_DIR}/io/ft_putendl.c \
+				${LIBFT_SRC_DIR}/io/ft_putendl_fd.c \
+				${LIBFT_SRC_DIR}/io/ft_putchar.c \
+				${LIBFT_SRC_DIR}/io/ft_putchar_fd.c \
+				${LIBFT_SRC_DIR}/io/ft_putstr.c \
+				${LIBFT_SRC_DIR}/io/ft_putnbr_base.c \
+				${LIBFT_SRC_DIR}/io/ft_putchar_fd_count.c \
+				${LIBFT_SRC_DIR}/io/ft_itoa_base_buf.c
 
-OBJS = $(SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o)
-DEPS = $(OBJS:.o=.d)
-# **************************************************************************** #
-# *** Libft Definitions                                                        #
-# **************************************************************************** #
-LIBFT_DIR = ./libft
-LIBFT = ${LIBFT_DIR}/libft.a
+PRINTF_SRCS =	${PRINTF_SRC_DIR}/buffer.c \
+				${PRINTF_SRC_DIR}/flagshandling.c \
+				${PRINTF_SRC_DIR}/print.c \
+				${PRINTF_SRC_DIR}/process_string.c \
+				${PRINTF_SRC_DIR}/ft_printf.c \
+				${PRINTF_SRC_DIR}/errorhandling.c \
+				${PRINTF_SRC_DIR}/vaarg.c \
+				${PRINTF_SRC_DIR}/process_uint.c \
+				${PRINTF_SRC_DIR}/inner_printf.c \
+				${PRINTF_SRC_DIR}/process_int.c
 
+GNL_SRCS =		${GNL_SRC_DIR}/get_next_line.c
+
+SRCS := $(GNL_SRCS) $(PRINTF_SRCS) $(LIBFT_SRCS)
+
+OBJS := $(SRCS:${SRC_DIR}/%.c=${OBJ_DIR}/%.o)
+DEPS := $(OBJS:.o=.d)
 
 # **************************************************************************** #
 # *** Main Rules                                                               #
 # **************************************************************************** #
 
-all : ${NAME}
+all : $(NAME)
 
-bonus: all
-
-${NAME}: ${OBJS} Makefile ${LIBFT}
-	@cp ${LIBFT} ./${NAME}
+${NAME} : ${OBJS} Makefile
 	@ar -r ${NAME} ${OBJS}
 	@echo "\033[95m${NAME} is built. \033[0m"
 
-${OBJ_DIR}/%.o: $(SRC_DIR)/%.c
+${OBJ_DIR}/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p ${@D}
 	@${CC} ${CCFLAGS} -MMD -c $< ${INCLUDES} -o $@
 
 # **************************************************************************** #
-# *** Libft Rules                                                              #
-# **************************************************************************** #
-
-${LIBFT}:
-	@make -s -C ${LIBFT_DIR}
-# **************************************************************************** #
 # *** Common Rules                                                             #
 # **************************************************************************** #
 
-run: all
-	gcc  -L. -lftprintf  -fsanitize=address -g test.c  && ./a.out
-
 clean:
 	@rm -rf ${OBJ_DIR}
-	@make -C ${LIBFT_DIR} clean
 
 fclean: clean
 	@rm -rf ./${NAME}
-	@make -C ${LIBFT_DIR} fclean
 
 re: fclean all
 

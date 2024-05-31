@@ -6,16 +6,17 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 09:32:52 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:28:54 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
 # include <stdarg.h>
 # include <stddef.h>
+
+# include "libft.h"
 
 # define PRINTF_BUFFER_SIZE 4096
 # define PRINFT_BUFFERNB_SIZE 96
@@ -71,8 +72,9 @@ typedef struct s_contwidth
 	int			was_negative;
 }	t_contwidth;
 
-typedef union u_data {
-    char				*s;
+typedef union u_data
+{
+	char				*s;
 	long long			i;
 	unsigned long long	u;
 }	t_data;
@@ -96,7 +98,7 @@ typedef struct s_prtinfo
 typedef struct s_content
 {
 	char				type;
-	size_t 				pos;
+	size_t				pos;
 	size_t				counter;
 	t_data				value;
 	t_prtinfo			prt;
@@ -104,7 +106,6 @@ typedef struct s_content
 	t_contwidth			width;
 	t_contwidth			prec;
 }	t_content;
-
 
 typedef struct s_printf
 {
@@ -125,18 +126,18 @@ typedef struct s_printf
 */
 
 int				ft_printf(const char *str, ...);
-int				ft_dprintf(int fd, const char * str, ...);
+int				ft_dprintf(int fd, const char *str, ...);
 int				ft_asprintf(char **ret, const char *str, ...);
 int				ft_snprintf(char *dest, size_t size, const char *str, ...);
 
 /*
 ** main functions
 */
-int				inner_printf(const char *str, 	t_printf *printf);
+int				inner_printf(const char *str, t_printf *printf);
 void			process_int(t_printf *printf);
 void			process_uint(t_printf *printf);
 void			process_string(t_printf *printf);
-void 			process_char(t_printf *printf);
+void			process_char(t_printf *printf);
 void			get_values(va_list *ap, t_content *content);
 
 /*

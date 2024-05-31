@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 06:31:07 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 11:03:39 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:25:41 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
+
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 typedef struct s_list
 {
