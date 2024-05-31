@@ -1,7 +1,13 @@
 <p align="center">
-	<img width="130px;" src="https://game.42sp.org.br/static/assets/images/42_logo_black.svg" align="center" alt="42" />&nbsp;&nbsp;&nbsp;
+	<img width="130px;" src="https://game.42sp.org.br/static/assets/images/42_logo_black.svg" align="center" alt="42" />
+	<br>
 	<img width="130px" src="https://game.42sp.org.br/static/assets/achievements/libftm.png" align="center" alt="libft" />
-	<h1 align="center">libft</h1>
+	&nbsp;&nbsp;&nbsp;
+	<img width="130px" src="https://game.42sp.org.br/static/assets/achievements/get_next_linem.png" align="center" alt="libft" />
+	&nbsp;&nbsp;&nbsp;
+	<img width="130px" src="https://game.42sp.org.br/static/assets/achievements/ft_printfm.png" align="center" alt="libft" />
+<br>
+<h1 align="center">libft</h1>
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/Success-107/100_✓-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge">
@@ -10,7 +16,7 @@
 </p>
 
 <p align="center">
-	<b><i>Development repository for the 42cursus Libft project @ 42 São Paulo</i></b><br>
+	<b><i>Extended version of the libft project, including refactored versions of ft_printf and get_next_line</i></b><br>
 </p>
 
 <p align="center">
@@ -24,7 +30,11 @@
 > _This project is your very first project as a student at 42. You will need to recode a few functions of the C standard library as well as some other utility functions that you will use during your whole cursus._
 
 
-> Extended Version, includes ft_printf and get_next_line
+[Original libft project](https://github.com/iwillenshofer/libft_42)
+
+[Original printf project](https://github.com/iwillenshofer/ft_printf_old)
+
+[Original get_next_line project](https://github.com/iwillenshofer/get_next_line)
 
 <br>
 
