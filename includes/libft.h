@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 06:31:07 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 11:25:41 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:02:59 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,20 @@ ssize_t	ft_putnbr_base(long long n, char *base, int fd);
 size_t	ft_strfind_first(const char *str, const char *set);
 ssize_t	ft_putchar_fd_count(char c, int fd);
 ssize_t	ft_itoa_base_buf(long long n, char *base, char *buf);
+
+int		ft_ishex(int c);
+size_t	ft_arglen(char **arg);
+int		ft_ishex(int c);;
+double	ft_sqrt(double number);
+char	*ft_notnumeric(char *s);
+char	*ft_nothex(char *s);
+void	ft_puthex(size_t nb);
+char	*ft_strcpy(char *dst, char *src);
+size_t	ft_atoul(const char *str);
+void    ft_putbits(unsigned char byte);
+void	ft_putbytes(void *bytes, size_t size);
+void	ft_puthexbyte(unsigned char c);
+void	ft_puthex_bytes(void *bytes, size_t size, size_t space, size_t carr);
+int     ft_strcmp(const char *s1, const char *s2);
 
 #endif

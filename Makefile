@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/31 11:29:28 by iwillens         ###   ########.fr        #
+#    Updated: 2024/05/31 12:07:00 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,19 @@ LIBFT_SRCS = 	${LIBFT_SRC_DIR}/strings/ft_strnstr.c \
 				${LIBFT_SRC_DIR}/io/ft_putstr.c \
 				${LIBFT_SRC_DIR}/io/ft_putnbr_base.c \
 				${LIBFT_SRC_DIR}/io/ft_putchar_fd_count.c \
-				${LIBFT_SRC_DIR}/io/ft_itoa_base_buf.c
+				${LIBFT_SRC_DIR}/io/ft_itoa_base_buf.c \
+				${LIBFT_SRC_DIR}/addons/ft_ishex.c \
+				${LIBFT_SRC_DIR}/addons/ft_arglen.c \
+				${LIBFT_SRC_DIR}/addons/ft_sqrt.c \
+				${LIBFT_SRC_DIR}/addons/ft_notnumeric.c \
+				${LIBFT_SRC_DIR}/addons/ft_nothex.c \
+				${LIBFT_SRC_DIR}/addons/ft_puthex.c \
+				${LIBFT_SRC_DIR}/addons/ft_strcpy.c \
+				${LIBFT_SRC_DIR}/addons/ft_atoul.c \
+				${LIBFT_SRC_DIR}/addons/ft_putbytes.c \
+				${LIBFT_SRC_DIR}/addons/ft_puthex_byte.c \
+				${LIBFT_SRC_DIR}/addons/ft_strcmp.c
+
 
 PRINTF_SRCS =	${PRINTF_SRC_DIR}/buffer.c \
 				${PRINTF_SRC_DIR}/flagshandling.c \
