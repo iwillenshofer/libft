@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:07:34 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 10:19:06 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:04:27 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 */
 ssize_t	ft_putchar_fd_count(char c, int fd)
 {
-	ssize_t ret;
+	ssize_t	ret;
 
 	ret = write(fd, &c, 1);
 	return (ret);

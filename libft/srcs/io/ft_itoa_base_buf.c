@@ -6,12 +6,11 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:49:47 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/30 14:24:38 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:04:42 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 static ssize_t	handle_signal(long long n,
 	unsigned long long *dst_nbr, size_t base_len, char *buf)
@@ -29,7 +28,7 @@ static ssize_t	handle_signal(long long n,
 static ssize_t	recursive_print(unsigned long long nbr,
 	char *base, char *buf, size_t pos)
 {
-	size_t base_len;
+	size_t	base_len;
 
 	base_len = ft_strlen(base);
 	if (nbr >= base_len)
@@ -66,4 +65,3 @@ ssize_t	ft_itoa_base_buf(long long n, char *base, char *buf)
 	buf[count] = '\0';
 	return (count);
 }
-
