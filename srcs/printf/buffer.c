@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:47:03 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 09:43:04 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 23:00:18 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	buffer_to_str(t_printf *printf)
 
 void	dump_buffer(t_printf *printf)
 {
+	if (printf->error)
+		return ;
 	if (printf->type == T_PRINTF || printf->type == T_DPRINTF)
 	{
 		if (write(printf->fd, printf->buffer, printf->buffer_pos) == -1)

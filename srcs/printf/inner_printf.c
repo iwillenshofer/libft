@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:52:49 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 09:36:36 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 22:49:12 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	printcontent(t_printf *printf)
 	else if (printf->cnt.type == 'u' || printf->cnt.type == 'x'
 		|| printf->cnt.type == 'X' || printf->cnt.type == 'p')
 		process_uint(printf);
+	else if (printf->cnt.type == 'C' || printf->cnt.type == 'B')
+		process_color(printf);
 }
 
 /*
@@ -52,11 +54,13 @@ static const char	*parse_precision(const char *str,
 ** go through the whole string passed by the user (%...s)
 ** to check for flags, width, precision, modifier and specifier.
 */
-static int	setcontent(const char *str, t_content *cnt)
+static int	setcontent(const char *str, t_printf *printf)
 {
-	int		flags;
-	int		number;
+	int			flags;
+	int			number;
+	t_content	*cnt;
 
+	cnt = &printf->cnt;
 	str += getflags(str, &flags);
 	cnt->flags = flags;
 	str += getwidth(str, &number);
@@ -69,6 +73,8 @@ static int	setcontent(const char *str, t_content *cnt)
 	else
 		cnt->width.wc = PF_WC_SET;
 	str = parse_precision(str, cnt, number);
+	if (printf->error)
+		return (PRINTF_FAILURE);
 	if (*str != cnt->type)
 		return (fatal_specifier(cnt->type, *str));
 	return (PRINTF_SUCCESS);
@@ -89,39 +95,37 @@ static int	perform_substitution(const char **str, t_printf *printf)
 	if (!pos)
 		return (fatal(ERR_UNTERMINATED_SPEC, 1));
 	printf->cnt.type = *(*str + (pos - 1));
-	if (setcontent(*str, &printf->cnt) == PRINTF_FAILURE)
+	if (setcontent(*str, printf) == PRINTF_FAILURE)
 		return (PRINTF_FAILURE);
 	get_values(&printf->ap, &printf->cnt);
+	if (printf->cnt.type == 'C' || printf->cnt.type == 'B')
+		*str += parse_color(*str, printf);
 	printcontent(printf);
 	*str += pos;
 	counter += printf->cnt.counter;
-	if (printf->error)
-		return (fatal(ERR_PRINTINGERROR, 0));
 	return (counter);
 }
 
 int	inner_printf(const char *str, t_printf *printf)
 {
-	int			ret;
-
 	while (*str)
 	{
 		if (*str == '%')
 		{
 			str++;
-			ret = perform_substitution(&str, printf);
-			if (ret == PRINTF_FAILURE)
-				break ;
-			printf->counter += ret;
+			printf->counter += perform_substitution(&str, printf);
 		}
 		else
 		{
-			if (storechar(*str, printf) == PRINTF_FAILURE)
-				break ;
+			storechar(*str, printf);
 			printf->counter++;
 			str++;
 		}
+		if (printf->error)
+			break ;
 	}
+	if (printf->color)
+		storenstr(RESET, ft_strlen(RESET), printf);
 	dump_buffer(printf);
 	if (printf->error)
 		printf->counter = -1;

@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 11:28:54 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 23:02:11 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define PF_BASE_16 "0123456789abcdef"
 # define PF_BASE_16U "0123456789ABCDEF"
 
-# define PF_SPECIFIERS "cspdiuxX%"
+# define PF_SPECIFIERS "CBcspdiuxX%"
 # define PF_SPEC_INT "dic"
 # define PF_SPEC_UINT "uxX"
 # define PF_SPEC_PTR "p"
@@ -59,6 +59,14 @@
 # define T_DPRINTF 1
 # define T_SNPRINTF 2
 # define T_ASPRINTF 3
+
+/*
+** coloring
+*/
+# define RESET "\033[0m"
+# define RESET_LEN 4
+# define COLOR_BUFFER_SIZE 32
+# define N_COLORS 11
 
 /*
 ** precision number, wildcard and if it was originally negative,
@@ -119,6 +127,7 @@ typedef struct s_printf
 	t_content		cnt;
 	size_t			counter;
 	int				error;
+	int				color;
 }	t_printf;
 
 /*
@@ -138,6 +147,7 @@ void			process_int(t_printf *printf);
 void			process_uint(t_printf *printf);
 void			process_string(t_printf *printf);
 void			process_char(t_printf *printf);
+void			process_color(t_printf *printf);
 void			get_values(va_list *ap, t_content *content);
 
 /*
@@ -167,5 +177,6 @@ int				fatal_specifier(char expected, char found);
 
 size_t			getflags(const char *str, int *flags);
 size_t			getwidth(const char *str, int *number);
+size_t			parse_color(const char *str, t_printf *printf);
 
 #endif

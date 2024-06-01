@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/31 12:07:00 by iwillens         ###   ########.fr        #
+#    Updated: 2024/05/31 21:00:12 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME = libft.a
 
 CC = clang
-CCFLAGS = -Wall -Werror -Wextra
+CCFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 
 SRC_DIR = ./srcs
 
@@ -109,7 +109,8 @@ PRINTF_SRCS =	${PRINTF_SRC_DIR}/buffer.c \
 				${PRINTF_SRC_DIR}/vaarg.c \
 				${PRINTF_SRC_DIR}/process_uint.c \
 				${PRINTF_SRC_DIR}/inner_printf.c \
-				${PRINTF_SRC_DIR}/process_int.c
+				${PRINTF_SRC_DIR}/process_int.c \
+				${PRINTF_SRC_DIR}/color.c
 
 GNL_SRCS =		${GNL_SRC_DIR}/get_next_line.c
 
