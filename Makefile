@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/31 21:00:12 by iwillens         ###   ########.fr        #
+#    Updated: 2024/05/31 23:35:18 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 NAME = libft.a
 
 CC = clang
-CCFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+CCFLAGS = -Wall -Werror -Wextra
 
 SRC_DIR = ./srcs
 
