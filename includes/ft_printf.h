@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 23:14:17 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/05/31 23:18:39 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@
 # define DIFF_FOREGROUND_BACKGROUND 10
 # define FIRST_COLOR 30
 # define INDEX_FIRST_COLOR 3
-
 
 /*
 ** precision number, wildcard and if it was originally negative,
