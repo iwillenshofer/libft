@@ -201,16 +201,21 @@ int	main(void)
 
 ### Conversions
 
-| Conversion | Description					|
-|------------|------------------------------|
-| **c**		 | int converted to ASCII char	|
-| **s**		 | NULL - terminated string		|
-| **%**		 | '%' char literal				|
-| **p**		 | Pointer memory address		|
-| **d, i**	 | int in decimal base			|
-| **u**		 | unsigned int in decimal base	|
-| **o**		 | unsigned int in octal base	|
-| **x, X**	 | int in hex base				|
+| Conversion  | Description					|
+|-------------|------------------------------|
+| **c**		  | int converted to ASCII char	|
+| **s**		  | NULL - terminated string		|
+| **%**		  | '%' char literal				|
+| **p**		  | Pointer memory address		|
+| **d, i**	  | int in decimal base			|
+| **u**		  | unsigned int in decimal base	|
+| **o**		  | unsigned int in octal base	|
+| **x, X**	  | int in hex base				|
+| **C\[color\]**| foreground color				|
+| **B\[color\]**| background color				|
+
+Valid color modifiers: reset/bold/light/black/red/green/yellow/blue/magenta/cyan/white
+
 
 
 # get_next_line
