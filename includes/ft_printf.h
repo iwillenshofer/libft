@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 16:07:38 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 23:18:39 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:59:03 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@
 # define PF_SPEC_PTR "p"
 # define PF_SPEC_STR "s"
 # define PF_SPEC_CHAR "%"
+
+# define LENGTH_MODIFIERS "hl"
+# define LM_SHORT 1
+# define LM_LONG 2
 
 /*
 ** defines WIDTH/PRECISION:
@@ -117,6 +121,7 @@ typedef struct s_content
 	int					flags;
 	t_contwidth			width;
 	t_contwidth			prec;
+	int					modifier;
 }	t_content;
 
 typedef struct s_printf
@@ -182,5 +187,10 @@ int				fatal_specifier(char expected, char found);
 size_t			getflags(const char *str, int *flags);
 size_t			getwidth(const char *str, int *number);
 size_t			parse_color(const char *str, t_printf *printf);
+
+/*
+** modifiers
+*/
+const char		*parse_modifier(const char *str, t_content *cnt);
 
 #endif

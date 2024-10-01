@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 06:31:07 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 22:46:36 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:43:08 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 
 # include "get_next_line.h"
 # include "ft_printf.h"
+
+typedef enum e_bool
+{
+	false,
+	true
+}	t_bool;
 
 typedef struct s_list
 {
@@ -50,6 +56,7 @@ void	ft_putendl_fd(char *s, int fd);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
+char	*ft_strchrnul(const char *s, int c);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_lstadd_back(t_list **lst, t_list *new);
@@ -109,5 +116,6 @@ void	ft_putbytes(void *bytes, size_t size);
 void	ft_puthexbyte(unsigned char c);
 void	ft_puthex_bytes(void *bytes, size_t size, size_t space, size_t carr);
 int		ft_strcmp(const char *s1, const char *s2);
+t_bool	ft_startswith(const char *str, const char *prefix);
 
 #endif

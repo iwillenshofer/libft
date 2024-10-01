@@ -6,7 +6,7 @@
 #    By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/01 10:55:01 by iwillens          #+#    #+#              #
-#    Updated: 2024/05/31 23:35:18 by iwillens         ###   ########.fr        #
+#    Updated: 2024/09/27 20:43:40 by iwillens         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@
 
 NAME = libft.a
 
-CC = clang
-CCFLAGS = -Wall -Werror -Wextra
+CC = gcc
+CCFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g
 
 SRC_DIR = ./srcs
 
@@ -34,6 +34,7 @@ LIBFT_SRCS = 	${LIBFT_SRC_DIR}/strings/ft_strnstr.c \
 				${LIBFT_SRC_DIR}/strings/ft_strlen.c \
 				${LIBFT_SRC_DIR}/strings/ft_itoa_base.c \
 				${LIBFT_SRC_DIR}/strings/ft_strchr.c \
+				${LIBFT_SRC_DIR}/strings/ft_strchrnul.c \
 				${LIBFT_SRC_DIR}/strings/ft_striteri.c \
 				${LIBFT_SRC_DIR}/strings/ft_strjoin.c \
 				${LIBFT_SRC_DIR}/strings/ft_split.c \
@@ -48,6 +49,7 @@ LIBFT_SRCS = 	${LIBFT_SRC_DIR}/strings/ft_strnstr.c \
 				${LIBFT_SRC_DIR}/strings/ft_strtoupper.c \
 				${LIBFT_SRC_DIR}/strings/ft_atoi.c \
 				${LIBFT_SRC_DIR}/strings/ft_itoa.c \
+				${LIBFT_SRC_DIR}/strings/ft_startswith.c \
 				${LIBFT_SRC_DIR}/char/ft_isdigit.c \
 				${LIBFT_SRC_DIR}/char/ft_isblank.c \
 				${LIBFT_SRC_DIR}/char/ft_isascii.c \
@@ -110,7 +112,8 @@ PRINTF_SRCS =	${PRINTF_SRC_DIR}/buffer.c \
 				${PRINTF_SRC_DIR}/process_uint.c \
 				${PRINTF_SRC_DIR}/inner_printf.c \
 				${PRINTF_SRC_DIR}/process_int.c \
-				${PRINTF_SRC_DIR}/color.c
+				${PRINTF_SRC_DIR}/color.c \
+				${PRINTF_SRC_DIR}/modifiers.c
 
 GNL_SRCS =		${GNL_SRC_DIR}/get_next_line.c
 

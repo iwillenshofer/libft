@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:44:34 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 11:15:51 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/07/20 19:40:51 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	read_file(int fd, char **s, char **buf, t_bool *found)
 		}
 		(*buf)[ret] = 0;
 		if (ft_strchr(*buf, '\n'))
-			*found = E_TRUE;
+			*found = true;
 		tmp = *s;
 		*s = ft_strjoin(*s, *buf);
 		free(tmp);
@@ -49,7 +49,7 @@ int	read_line(int fd, char **s)
 	char	*buf;
 	t_bool	found;
 
-	found = E_FALSE;
+	found = false;
 	if (ft_strchr(*s, '\n'))
 		return (GNL_RDSUCCESS);
 	buf = malloc(BUFFER_SIZE + 1);

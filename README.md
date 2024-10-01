@@ -1,11 +1,11 @@
 <p align="center">
-	<img width="130px;" src="https://game.42sp.org.br/static/assets/images/42_logo_black.svg" align="center" alt="42" />
+	<img width="130px;" src="https://raw.githubusercontent.com/iwillenshofer/resources/main/images/42_logo_black.svg" align="center" alt="42" />
 	<br>
-	<img width="130px" src="https://game.42sp.org.br/static/assets/achievements/libftm.png" align="center" alt="libft" />
+	<img width="130px" src="https://raw.githubusercontent.com/iwillenshofer/resources/main/achievements/libft.png" align="center" alt="libft" />
 	&nbsp;&nbsp;&nbsp;
-	<img width="130px" src="https://game.42sp.org.br/static/assets/achievements/get_next_linem.png" align="center" alt="libft" />
+	<img width="130px" src="https://raw.githubusercontent.com/iwillenshofer/resources/main/achievements/get_next_line.png" align="center" alt="libft" />
 	&nbsp;&nbsp;&nbsp;
-	<img width="130px" src="https://game.42sp.org.br/static/assets/achievements/ft_printfm.png" align="center" alt="libft" />
+	<img width="130px" src="https://raw.githubusercontent.com/iwillenshofer/resources/main/achievements/ft_printf.png" align="center" alt="libft" />
 <br>
 <h1 align="center">libft</h1>
 </p>

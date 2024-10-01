@@ -6,7 +6,7 @@
 /*   By: iwillens <iwillens@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:52:49 by iwillens          #+#    #+#             */
-/*   Updated: 2024/05/31 22:49:12 by iwillens         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:56:51 by iwillens         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static int	setcontent(const char *str, t_printf *printf)
 	else
 		cnt->width.wc = PF_WC_SET;
 	str = parse_precision(str, cnt, number);
+	str = parse_modifier(str, cnt);
 	if (printf->error)
 		return (PRINTF_FAILURE);
 	if (*str != cnt->type)
